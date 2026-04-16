@@ -89,14 +89,14 @@
             // Gentle ochre-on-dark ramp
             vec3 col = mix(u_color_dark, u_color_warm, smoothstep(0.38, 0.82, n));
 
-            // Steep top-weighted falloff so everything below fades fast
-            float topGlow = pow(1.0 - uv.y, 2.0);
-            col *= topGlow * 0.32;
+            // Top-weighted falloff so everything below fades fast
+            float topGlow = pow(1.0 - uv.y, 1.7);
+            col *= topGlow * 0.58;
 
-            // Barely-there warm hotspot, off-center upper left
+            // Gentle warm hotspot, off-center upper left
             vec2 center = vec2(0.30 * aspect, 0.12);
             float d = distance(vec2(uv.x * aspect, uv.y), center);
-            col += u_color_warm * exp(-d * 3.0) * 0.07;
+            col += u_color_warm * exp(-d * 2.6) * 0.14;
 
             gl_FragColor = vec4(col, 1.0);
         }
