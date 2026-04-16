@@ -407,25 +407,25 @@ function setSegmented(field, value) {
 
 function setIndustry(value) {
     filters.industry = value;
-    document.querySelectorAll('.industry-list button').forEach(btn => {
+    document.querySelectorAll('.chip-industry').forEach(btn => {
         btn.classList.toggle('is-active', btn.dataset.value === value);
     });
 }
 
 function setState(value) {
     filters.state = value;
-    document.querySelectorAll('.chip[data-field="state"]').forEach(btn => {
+    document.querySelectorAll('.chip-state').forEach(btn => {
         btn.classList.toggle('is-active', btn.dataset.value === value);
     });
 }
 
 function setStateChipsEnabled(enabled) {
-    document.querySelectorAll('.chip[data-field="state"]').forEach(btn => {
+    document.querySelectorAll('.chip-state').forEach(btn => {
         btn.disabled = !enabled;
         if (!enabled) btn.classList.remove('is-active');
     });
-    const legend = document.querySelector('#group-state legend');
-    if (legend) legend.style.opacity = enabled ? '1' : '0.5';
+    const row = document.querySelector('[data-filter="state"]');
+    if (row) row.style.opacity = enabled ? '1' : '0.55';
 }
 
 function setMode(mode) {
@@ -446,7 +446,7 @@ function resetAll() {
     setState(null);
     setStateChipsEnabled(false);
     filters.flags.clear();
-    document.querySelectorAll('.flag input').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.flag-chip input').forEach(cb => cb.checked = false);
     setMode('plan');
     document.getElementById('sort-select').value = 'urgency';
     filters.sort = 'urgency';
@@ -479,7 +479,7 @@ function init() {
     });
 
     // State chips
-    document.querySelectorAll('.chip[data-field="state"]').forEach(btn => {
+    document.querySelectorAll('.chip-state').forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.disabled) return;
             const next = filters.state === btn.dataset.value ? null : btn.dataset.value;
@@ -488,16 +488,16 @@ function init() {
         });
     });
 
-    // Industry
-    document.querySelectorAll('.industry-list button').forEach(btn => {
+    // Industry chips
+    document.querySelectorAll('.chip-industry').forEach(btn => {
         btn.addEventListener('click', () => {
             setIndustry(btn.dataset.value);
             renderList();
         });
     });
 
-    // Flags
-    document.querySelectorAll('.flag input').forEach(cb => {
+    // Status flag chips
+    document.querySelectorAll('.flag-chip input').forEach(cb => {
         cb.addEventListener('change', () => {
             const flag = cb.dataset.flag;
             if (cb.checked) filters.flags.add(flag);

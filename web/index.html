@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@300..600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -40,16 +40,16 @@
 <!-- ================= HERO ================= -->
 <section class="hero">
     <div class="hero-inner">
-        <p class="hero-kicker">An open reference — Commonwealth &amp; state / territory</p>
+        <p class="hero-kicker">An open reference — Commonwealth, state &amp; territory</p>
 
         <h1 class="hero-title">
-            <em>Every cyber&nbsp;incident report</em> an Australian organisation may need to make<span class="full-stop">.</span>
+            <span class="accent">Every cyber incident report</span> an Australian organisation may need to make<span class="full-stop">.</span>
         </h1>
 
         <p class="hero-sub">
-            Mandatory, voluntary, and recommended disclosures — filtered to your organisation's profile.
+            Mandatory, voluntary, and recommended disclosures — filtered to your profile.
             <strong>35 obligations, 22 regulators,</strong> plain language, sourced and dated.
-            Built as an open dataset because the answer should not live in a law firm PDF.
+            Built as open data because the answer should not live in a law firm PDF.
         </p>
 
         <div class="hero-bar">
@@ -84,123 +84,145 @@
     </div>
 </section>
 
-<!-- ================= WORKSPACE ================= -->
-<main class="workspace">
+<!-- ================= PAGE (selector above, results below) ================= -->
+<main class="page">
 
-    <!-- Profile panel -->
-    <aside class="panel-profile" aria-label="Organisation profile">
+    <!-- Selector -->
+    <section class="selector" aria-label="Organisation profile selector">
 
-        <header class="panel-head">
-            <h2 class="panel-title"><em>Your</em> organisation</h2>
-            <button class="reset-link" id="reset-btn" type="button">Reset</button>
+        <header class="selector-head">
+            <h2 class="selector-title"><span class="accent">Your</span>&nbsp;organisation</h2>
+            <button class="reset-link" id="reset-btn" type="button">Reset all</button>
         </header>
 
-        <fieldset class="group">
-            <legend>Sector</legend>
-            <div class="segmented" role="radiogroup" aria-label="Sector">
-                <button class="seg" data-field="sector" data-value="any" role="radio" aria-checked="true">Any</button>
-                <button class="seg" data-field="sector" data-value="public" role="radio" aria-checked="false">Public</button>
-                <button class="seg" data-field="sector" data-value="private" role="radio" aria-checked="false">Private</button>
+        <div class="filter-row" data-filter="sector">
+            <div class="filter-label">Sector</div>
+            <div class="filter-controls">
+                <div class="segmented" role="radiogroup" aria-label="Sector">
+                    <button class="seg" data-field="sector" data-value="any" role="radio" aria-checked="true">Any</button>
+                    <button class="seg" data-field="sector" data-value="public" role="radio" aria-checked="false">Public</button>
+                    <button class="seg" data-field="sector" data-value="private" role="radio" aria-checked="false">Private</button>
+                </div>
             </div>
-        </fieldset>
+        </div>
 
-        <fieldset class="group" id="group-state">
-            <legend>State / territory <span class="hint">(public sector only)</span></legend>
-            <div class="chip-grid" role="radiogroup" aria-label="State or territory">
-                <button class="chip" data-field="state" data-value="NSW" disabled>NSW</button>
-                <button class="chip" data-field="state" data-value="VIC" disabled>VIC</button>
-                <button class="chip" data-field="state" data-value="QLD" disabled>QLD</button>
-                <button class="chip" data-field="state" data-value="WA" disabled>WA</button>
-                <button class="chip" data-field="state" data-value="SA" disabled>SA</button>
-                <button class="chip" data-field="state" data-value="TAS" disabled>TAS</button>
-                <button class="chip" data-field="state" data-value="ACT" disabled>ACT</button>
-                <button class="chip" data-field="state" data-value="NT" disabled>NT</button>
+        <div class="filter-row" data-filter="state">
+            <div class="filter-label">
+                State / territory
+                <span class="hint">public sector only</span>
             </div>
-        </fieldset>
-
-        <fieldset class="group">
-            <legend>Annual turnover (AUD)</legend>
-            <div class="segmented" role="radiogroup" aria-label="Annual turnover">
-                <button class="seg" data-field="turnover" data-value="any" role="radio" aria-checked="true">Any</button>
-                <button class="seg" data-field="turnover" data-value="above" role="radio" aria-checked="false">&ge;&nbsp;$3M</button>
-                <button class="seg" data-field="turnover" data-value="below" role="radio" aria-checked="false">&lt;&nbsp;$3M</button>
+            <div class="filter-controls">
+                <div class="state-chips" role="radiogroup" aria-label="State or territory">
+                    <button class="chip-state" data-field="state" data-value="NSW" disabled>NSW</button>
+                    <button class="chip-state" data-field="state" data-value="VIC" disabled>VIC</button>
+                    <button class="chip-state" data-field="state" data-value="QLD" disabled>QLD</button>
+                    <button class="chip-state" data-field="state" data-value="WA"  disabled>WA</button>
+                    <button class="chip-state" data-field="state" data-value="SA"  disabled>SA</button>
+                    <button class="chip-state" data-field="state" data-value="TAS" disabled>TAS</button>
+                    <button class="chip-state" data-field="state" data-value="ACT" disabled>ACT</button>
+                    <button class="chip-state" data-field="state" data-value="NT"  disabled>NT</button>
+                </div>
             </div>
-        </fieldset>
+        </div>
 
-        <fieldset class="group">
-            <legend>Industry</legend>
-            <div class="industry-list" role="radiogroup" aria-label="Industry">
-                <button data-field="industry" data-value="all" class="is-active">Any industry</button>
-                <button data-field="industry" data-value="398">Financial services</button>
-                <button data-field="industry" data-value="400">Healthcare</button>
-                <button data-field="industry" data-value="397">Energy</button>
-                <button data-field="industry" data-value="404">Transport</button>
-                <button data-field="industry" data-value="403">Telecommunications</button>
-                <button data-field="industry" data-value="396">Defence</button>
-                <button data-field="industry" data-value="401">Higher education</button>
-                <button data-field="industry" data-value="402">Space technology</button>
-                <button data-field="industry" data-value="395">Data storage / processing</button>
-                <button data-field="industry" data-value="399">Food &amp; grocery</button>
-                <button data-field="industry" data-value="405">Water &amp; sewerage</button>
-                <button data-field="industry" data-value="406">Other</button>
+        <div class="filter-row" data-filter="turnover">
+            <div class="filter-label">Turnover <span class="hint">annual, AUD</span></div>
+            <div class="filter-controls">
+                <div class="segmented" role="radiogroup" aria-label="Annual turnover">
+                    <button class="seg" data-field="turnover" data-value="any"   role="radio" aria-checked="true">Any</button>
+                    <button class="seg" data-field="turnover" data-value="above" role="radio" aria-checked="false">&ge;&nbsp;$3M</button>
+                    <button class="seg" data-field="turnover" data-value="below" role="radio" aria-checked="false">&lt;&nbsp;$3M</button>
+                </div>
             </div>
-        </fieldset>
+        </div>
 
-        <fieldset class="group">
-            <legend>Regulatory status <span class="hint">tick all that apply</span></legend>
-            <div class="flag-list">
-                <label class="flag">
-                    <input type="checkbox" data-flag="asx">
-                    <span class="flag-label">ASX-listed entity</span>
-                    <span class="flag-tag">ASX</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="ci">
-                    <span class="flag-label">Critical infrastructure entity</span>
-                    <span class="flag-tag">SOCI</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="apra">
-                    <span class="flag-label">APRA-regulated (bank, insurer, super)</span>
-                    <span class="flag-tag">APRA</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="afs">
-                    <span class="flag-label">AFS or credit licensee</span>
-                    <span class="flag-tag">ASIC</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="telco">
-                    <span class="flag-label">Telco carrier / CSP</span>
-                    <span class="flag-tag">TIA</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="mhr">
-                    <span class="flag-label">My Health Record participant</span>
-                    <span class="flag-tag">ADHA</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="cdr">
-                    <span class="flag-label">CDR accredited data recipient</span>
-                    <span class="flag-tag">CDR</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="foreign">
-                    <span class="flag-label">Foreign investor (FIRB conditions)</span>
-                    <span class="flag-tag">FIRB</span>
-                </label>
-                <label class="flag">
-                    <input type="checkbox" data-flag="clearing">
-                    <span class="flag-label">Clearing &amp; settlement licensee</span>
-                    <span class="flag-tag">RBA</span>
-                </label>
+        <div class="filter-row" data-filter="industry">
+            <div class="filter-label">Industry</div>
+            <div class="filter-controls">
+                <div class="industry-chips" role="radiogroup" aria-label="Industry">
+                    <button class="chip-industry is-active" data-field="industry" data-value="all">Any</button>
+                    <button class="chip-industry" data-field="industry" data-value="398">Financial services</button>
+                    <button class="chip-industry" data-field="industry" data-value="400">Healthcare</button>
+                    <button class="chip-industry" data-field="industry" data-value="397">Energy</button>
+                    <button class="chip-industry" data-field="industry" data-value="404">Transport</button>
+                    <button class="chip-industry" data-field="industry" data-value="403">Telecommunications</button>
+                    <button class="chip-industry" data-field="industry" data-value="396">Defence</button>
+                    <button class="chip-industry" data-field="industry" data-value="401">Higher education</button>
+                    <button class="chip-industry" data-field="industry" data-value="402">Space technology</button>
+                    <button class="chip-industry" data-field="industry" data-value="395">Data storage / processing</button>
+                    <button class="chip-industry" data-field="industry" data-value="399">Food &amp; grocery</button>
+                    <button class="chip-industry" data-field="industry" data-value="405">Water &amp; sewerage</button>
+                    <button class="chip-industry" data-field="industry" data-value="406">Other</button>
+                </div>
             </div>
-        </fieldset>
+        </div>
 
-    </aside>
+        <div class="filter-row" data-filter="status">
+            <div class="filter-label">Status <span class="hint">tick all that apply</span></div>
+            <div class="filter-controls">
+                <div class="flag-chips">
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="asx">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>ASX-listed</span>
+                        <span class="tag">ASX</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="ci">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Critical infrastructure</span>
+                        <span class="tag">SOCI</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="apra">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>APRA-regulated</span>
+                        <span class="tag">APRA</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="afs">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>AFS / credit licensee</span>
+                        <span class="tag">ASIC</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="telco">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Telco carrier / CSP</span>
+                        <span class="tag">TIA</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="mhr">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>My Health Record</span>
+                        <span class="tag">ADHA</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="cdr">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>CDR accredited</span>
+                        <span class="tag">CDR</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="foreign">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Foreign investor</span>
+                        <span class="tag">FIRB</span>
+                    </label>
+                    <label class="flag-chip">
+                        <input type="checkbox" data-flag="clearing">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Clearing &amp; settlement</span>
+                        <span class="tag">RBA</span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
-    <!-- Results panel -->
-    <section class="panel-results" aria-live="polite" aria-label="Applicable obligations">
+    </section>
+
+    <!-- Results -->
+    <section class="results" aria-live="polite" aria-label="Applicable obligations">
 
         <header class="results-head">
             <div class="results-count">
@@ -240,7 +262,7 @@
             community-maintained — corrections and new jurisdictions welcome via pull request.
         </p>
         <div class="footer-meta">
-            Source data · <a href="#" target="_blank" rel="noopener">github / afterbreach</a><br>
+            Source data · <a href="https://github.com/AfterBreach/AfterBreach" target="_blank" rel="noopener">github.com/afterbreach</a><br>
             Dataset v1.0.0 · 2026·04·16<br>
             License · Apache 2.0
         </div>
