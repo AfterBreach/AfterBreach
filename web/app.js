@@ -65,16 +65,48 @@ const SCENARIO = {
     'au-aviation-maritime-cyber':          'if aviation or maritime asset affected'
 };
 
+// Machine-readable scenario → obligation mapping used for Incident-mode filtering.
+// Keys match scenario-chip data-scenario attributes; values are obligation IDs
+// that only apply when the scenario is active.
+const OBLIGATION_SCENARIOS = {
+    'au-ndb':                              ['personal-data'],
+    'au-ransomware':                       ['ransom-paid'],
+    'au-cdr-breach':                       ['personal-data', 'cdr-data'],
+    'au-cdr-security':                     ['cdr-data'],
+    'au-my-health-record':                 ['health-records', 'personal-data'],
+    'au-my-health-record-state':           ['health-records', 'personal-data'],
+    'au-nsw-mndb':                         ['personal-data'],
+    'au-qld-mndb':                         ['personal-data'],
+    'au-wa-notifiable-breach':             ['personal-data'],
+    'au-vic-ovic-incident':                ['personal-data'],
+    'au-apra-cps230-critical-disruption':  ['critical-ops'],
+    'au-soci-ci-incident':                 ['critical-ops'],
+    'au-asx-continuous-disclosure':        ['material-securities'],
+    'au-tga-therapeutic':                  ['health-records']
+};
+
+const MODE_CAPTIONS = {
+    plan: {
+        label: 'Planning',
+        text:  'See every obligation that could apply to your profile.'
+    },
+    incident: {
+        label: 'Incident',
+        text:  'Toggle the scenarios that have occurred to reveal triggered obligations.'
+    }
+};
+
 /* ---- Filter state ---- */
 
 const filters = {
-    mode:     'plan',           // 'plan' | 'incident'
-    sector:   'any',            // 'any' | 'public' | 'private'
-    state:    null,             // 'NSW' | 'VIC' | ... | null
-    turnover: 'any',            // 'any' | 'above' | 'below'
-    industry: 'all',            // sector ID string | 'all'
-    flags:    new Set(),        // 'asx','ci','apra','afs','telco','mhr','cdr','foreign','clearing'
-    sort:     'urgency'         // 'urgency' | 'name' | 'regulator' | 'type'
+    mode:      'plan',           // 'plan' | 'incident'
+    sector:    'any',            // 'any' | 'public' | 'private'
+    state:     null,             // 'NSW' | 'VIC' | ... | null
+    turnover:  'any',            // 'any' | 'above' | 'below'
+    industry:  'all',            // sector ID string | 'all'
+    flags:     new Set(),        // 'asx','ci','apra','afs','telco','mhr','cdr','foreign','clearing'
+    scenarios: new Set(),        // 'personal-data','ransom-paid','health-records','critical-ops','material-securities','cdr-data'
+    sort:      'urgency'         // 'urgency' | 'name' | 'regulator' | 'type'
 };
 
 /* ---- Matching ---- */
@@ -113,6 +145,17 @@ function obligationMatches(ob, f) {
     // Narrow obligations — require their flag
     const gate = FLAG_GATED[ob.id];
     if (gate && !f.flags.has(gate)) return false;
+
+    // Incident-mode scenario gating: if the obligation only applies under
+    // specific scenarios, it shows only when at least one of those scenarios
+    // is toggled. Non-scenario obligations always pass.
+    if (f.mode === 'incident') {
+        const scenarios = OBLIGATION_SCENARIOS[ob.id];
+        if (scenarios && scenarios.length > 0) {
+            const active = scenarios.some(s => f.scenarios.has(s));
+            if (!active) return false;
+        }
+    }
 
     return true;
 }
@@ -435,8 +478,22 @@ function setMode(mode) {
         btn.classList.toggle('is-active', active);
         btn.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    const label = document.getElementById('count-mode');
-    if (label) label.textContent = mode === 'incident' ? 'Responding' : 'Exploring';
+
+    // Drive CSS that shows/hides the scenario row.
+    document.body.dataset.mode = mode;
+
+    // Update the count banner wording.
+    const countLabel = document.getElementById('count-mode');
+    if (countLabel) countLabel.textContent = mode === 'incident' ? 'Responding' : 'Exploring';
+
+    // Update the descriptive caption next to the toggle.
+    const caption = MODE_CAPTIONS[mode];
+    if (caption) {
+        const labelEl = document.querySelector('.mode-caption-label');
+        const textEl  = document.querySelector('.mode-caption-text');
+        if (labelEl) labelEl.textContent = caption.label;
+        if (textEl)  textEl.textContent  = caption.text;
+    }
 }
 
 function resetAll() {
@@ -446,7 +503,9 @@ function resetAll() {
     setState(null);
     setStateChipsEnabled(false);
     filters.flags.clear();
+    filters.scenarios.clear();
     document.querySelectorAll('.flag-chip input').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.scenario-chip input').forEach(cb => cb.checked = false);
     setMode('plan');
     document.getElementById('sort-select').value = 'urgency';
     filters.sort = 'urgency';
@@ -502,6 +561,16 @@ function init() {
             const flag = cb.dataset.flag;
             if (cb.checked) filters.flags.add(flag);
             else             filters.flags.delete(flag);
+            renderList();
+        });
+    });
+
+    // Scenario chips (incident mode)
+    document.querySelectorAll('.scenario-chip input').forEach(cb => {
+        cb.addEventListener('change', () => {
+            const scenario = cb.dataset.scenario;
+            if (cb.checked) filters.scenarios.add(scenario);
+            else             filters.scenarios.delete(scenario);
             renderList();
         });
     });

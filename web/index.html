@@ -47,22 +47,38 @@
         </h1>
 
         <p class="hero-sub">
-            Mandatory, voluntary, and recommended disclosures — filtered to your profile.
-            <strong>35 obligations, 22 regulators,</strong> plain language, sourced and dated.
-            Built as open data because the answer should not live in a law firm PDF.
+            Mandatory, voluntary, and recommended disclosures — filtered to your profile. Plain language, sourced and dated.
         </p>
 
         <div class="hero-bar">
-            <div class="mode-toggle" role="tablist" aria-label="Usage mode">
-                <button class="mode-btn is-active" role="tab" aria-selected="true" data-mode="plan">
-                    <span class="mode-dot"></span> Planning
-                </button>
-                <button class="mode-btn" role="tab" aria-selected="false" data-mode="incident">
-                    <span class="mode-dot"></span> Incident response
-                </button>
+            <div class="mode-cluster">
+                <div class="mode-toggle" role="tablist" aria-label="Usage mode">
+                    <button class="mode-btn is-active" role="tab" aria-selected="true" data-mode="plan">
+                        <span class="mode-dot"></span> Planning
+                    </button>
+                    <button class="mode-btn" role="tab" aria-selected="false" data-mode="incident">
+                        <span class="mode-dot"></span> Incident response
+                    </button>
+                </div>
+                <p class="mode-caption" id="mode-caption">
+                    <span class="mode-caption-label">Planning</span>
+                    <span class="mode-caption-text">See every obligation that could apply to your profile.</span>
+                </p>
             </div>
 
             <dl class="stat-strip">
+                <div class="stat">
+                    <dt class="stat-label">Obligations</dt>
+                    <dd class="stat-value">35</dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Regulators</dt>
+                    <dd class="stat-value">22</dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat-label">Mandatory</dt>
+                    <dd class="stat-value">30</dd>
+                </div>
                 <div class="stat">
                     <dt class="stat-label">Tightest window</dt>
                     <dd class="stat-value">01<span class="stat-unit">H</span></dd>
@@ -70,14 +86,6 @@
                 <div class="stat">
                     <dt class="stat-label">Widest window</dt>
                     <dd class="stat-value">30<span class="stat-unit">D</span></dd>
-                </div>
-                <div class="stat">
-                    <dt class="stat-label">Mandatory</dt>
-                    <dd class="stat-value">30</dd>
-                </div>
-                <div class="stat">
-                    <dt class="stat-label">Jurisdictions</dt>
-                    <dd class="stat-value">5</dd>
                 </div>
             </dl>
         </div>
@@ -153,6 +161,44 @@
                     <button class="chip-industry" data-field="industry" data-value="399">Food &amp; grocery</button>
                     <button class="chip-industry" data-field="industry" data-value="405">Water &amp; sewerage</button>
                     <button class="chip-industry" data-field="industry" data-value="406">Other</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-row filter-row-scenario" data-filter="scenario">
+            <div class="filter-label">Scenario <span class="hint">what has occurred</span></div>
+            <div class="filter-controls">
+                <div class="scenario-chips">
+                    <label class="scenario-chip">
+                        <input type="checkbox" data-scenario="personal-data">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Personal data compromised</span>
+                    </label>
+                    <label class="scenario-chip">
+                        <input type="checkbox" data-scenario="ransom-paid">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Ransom / extortion paid</span>
+                    </label>
+                    <label class="scenario-chip">
+                        <input type="checkbox" data-scenario="health-records">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Health records affected</span>
+                    </label>
+                    <label class="scenario-chip">
+                        <input type="checkbox" data-scenario="critical-ops">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Critical operations disrupted</span>
+                    </label>
+                    <label class="scenario-chip">
+                        <input type="checkbox" data-scenario="material-securities">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>Material impact on securities value</span>
+                    </label>
+                    <label class="scenario-chip">
+                        <input type="checkbox" data-scenario="cdr-data">
+                        <span class="mark" aria-hidden="true"></span>
+                        <span>CDR data affected</span>
+                    </label>
                 </div>
             </div>
         </div>
