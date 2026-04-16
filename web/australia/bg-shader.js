@@ -78,31 +78,25 @@
             vec2 uv = v_uv;
             float aspect = u_resolution.x / u_resolution.y;
 
-            // World-space position; shifts with scroll for subtle parallax
-            vec2 p = vec2(uv.x * aspect, uv.y + u_scroll * 0.2) * 2.2;
+            vec2 p = vec2(uv.x * aspect, uv.y) * 1.6;
 
-            float t = u_time * 0.045;
-            vec2 drift = vec2(t * 1.1, t * 0.7);
+            float t = u_time * 0.028;
+            vec2 drift = vec2(t, t * 0.6);
 
-            // Domain-warped noise: perturb position by another noise field
-            vec2 q = vec2(
-                fbm(p + drift),
-                fbm(p + drift + vec2(3.1, 1.7))
-            );
-            float n = fbm(p + q * 1.8 + drift);
+            // Single-pass FBM — no domain warping, much calmer output
+            float n = fbm(p + drift);
 
-            // Color ramp: dark → warm → hot (brand ochre highlights)
-            vec3 col = mix(u_color_dark, u_color_warm, smoothstep(0.28, 0.78, n));
-            col = mix(col, u_color_hot, smoothstep(0.70, 0.96, n) * 0.55);
+            // Gentle ochre-on-dark ramp
+            vec3 col = mix(u_color_dark, u_color_warm, smoothstep(0.38, 0.82, n));
 
-            // Top-weighted falloff (brighter up, fades down into the page)
-            float topGlow = pow(1.0 - uv.y, 1.35);
-            col *= 0.22 + topGlow * 1.05;
+            // Steep top-weighted falloff so everything below fades fast
+            float topGlow = pow(1.0 - uv.y, 2.0);
+            col *= topGlow * 0.32;
 
-            // Off-center warm hotspot
-            vec2 center = vec2(0.34 * aspect, 0.22);
+            // Barely-there warm hotspot, off-center upper left
+            vec2 center = vec2(0.30 * aspect, 0.12);
             float d = distance(vec2(uv.x * aspect, uv.y), center);
-            col += u_color_warm * exp(-d * 2.2) * 0.22;
+            col += u_color_warm * exp(-d * 3.0) * 0.07;
 
             gl_FragColor = vec4(col, 1.0);
         }
