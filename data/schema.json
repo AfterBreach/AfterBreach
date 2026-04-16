@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://afterbreach.org/schemas/obligations.schema.json",
+  "title": "AfterBreach Obligations Dataset",
+  "description": "Schema for a jurisdictional cyber incident reporting obligations dataset. One file per jurisdiction (e.g. data/au/obligations.json).",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "last_updated",
+    "jurisdiction_coverage",
+    "obligations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Semantic version of the dataset schema this file conforms to.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date (YYYY-MM-DD) of the most recent update to this dataset."
+    },
+    "jurisdiction_coverage": {
+      "type": "array",
+      "description": "List of jurisdiction codes present in this file.",
+      "items": { "$ref": "#/$defs/jurisdictionCode" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "data_provenance": {
+      "type": "object",
+      "description": "Free-form object documenting where the data came from and how it was verified.",
+      "additionalProperties": true
+    },
+    "source_notes": {
+      "type": "string",
+      "description": "Human-readable notes on how the dataset was compiled."
+    },
+    "disclaimer": {
+      "type": "string",
+      "description": "Legal disclaimer displayed alongside the data."
+    },
+    "sectors": {
+      "type": "object",
+      "description": "Map of sector IDs to human-readable names. IDs are jurisdiction-specific.",
+      "additionalProperties": { "type": "string" }
+    },
+    "entity_types": {
+      "type": "object",
+      "description": "Map of entity type IDs to human-readable names. IDs are jurisdiction-specific.",
+      "additionalProperties": { "type": "string" }
+    },
+    "obligations": {
+      "type": "array",
+      "description": "The reporting obligations in this jurisdiction.",
+      "items": { "$ref": "#/$defs/obligation" },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "jurisdictionCode": {
+      "type": "string",
+      "description": "ISO 3166-style jurisdiction code. Use ISO 3166-1 alpha-2 for country (AU, NZ, GB) and ISO 3166-2 style subdivisions (AU-NSW, US-CA).",
+      "pattern": "^[A-Z]{2}(-[A-Z0-9]{1,3})?$"
+    },
+    "url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "A URL, or null if not applicable."
+    },
+    "obligation": {
+      "type": "object",
+      "required": [
+        "id",
+        "jurisdiction",
+        "obligation_name",
+        "obligation_type",
+        "regulator",
+        "who_applies_to",
+        "trigger_condition",
+        "timeframe",
+        "timeframe_sort_hours",
+        "how_to_report",
+        "legislative_basis",
+        "description",
+        "penalty",
+        "learn_more_links",
+        "applies_to_sectors",
+        "applies_to_entity_types",
+        "requires_ransom_payment",
+        "last_verified",
+        "source"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique, stable identifier. Convention: lowercase, hyphenated, jurisdiction-namespaced (e.g. 'au-soci-ci-incident', 'au-vic-ovic-incident').",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "jurisdiction": { "$ref": "#/$defs/jurisdictionCode" },
+        "obligation_name": {
+          "type": "string",
+          "description": "Full name of the obligation. Prefer verbatim wording from the primary source where applicable."
+        },
+        "obligation_type": {
+          "type": "string",
+          "enum": ["Mandatory", "Voluntary", "Recommended"],
+          "description": "Mandatory: legally required. Voluntary: officially supported but optional. Recommended: best-practice notification without a formal legal basis."
+        },
+        "regulator": {
+          "type": "string",
+          "description": "Clean name of the regulator or recipient body."
+        },
+        "who_applies_to": {
+          "type": "string",
+          "description": "Description of which entities the obligation applies to. Use verbatim wording from the source where possible."
+        },
+        "trigger_condition": {
+          "type": "string",
+          "description": "What event or state activates this obligation."
+        },
+        "timeframe": {
+          "type": "string",
+          "description": "Human-readable timeframe for reporting (e.g. 'Within 72 hours of becoming aware')."
+        },
+        "timeframe_sort_hours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Numeric timeframe in hours, used for sorting obligations by urgency. Use the tightest applicable timeframe for obligations with tiered deadlines."
+        },
+        "how_to_report": {
+          "type": "object",
+          "required": ["method"],
+          "additionalProperties": false,
+          "properties": {
+            "method": {
+              "type": "string",
+              "description": "Short description of the reporting mechanism (e.g. 'Online form', 'Phone', 'Email')."
+            },
+            "url": { "$ref": "#/$defs/url" },
+            "url_secondary": {
+              "$ref": "#/$defs/url",
+              "description": "Optional secondary URL, for dual-report obligations."
+            },
+            "url_users": {
+              "$ref": "#/$defs/url",
+              "description": "Optional separate form URL for end-users (e.g. TGA user reports)."
+            },
+            "phone": {
+              "type": ["string", "null"],
+              "description": "Phone number, or null."
+            },
+            "email": {
+              "type": ["string", "null"],
+              "format": "email",
+              "description": "Email address, or null."
+            }
+          }
+        },
+        "legislative_basis": {
+          "type": "string",
+          "description": "Act, section, regulation, or standard that imposes the obligation."
+        },
+        "description": {
+          "type": "string",
+          "description": "Full description of the obligation. Prefer verbatim source text where applicable."
+        },
+        "penalty": {
+          "type": ["string", "null"],
+          "description": "Penalty for non-compliance. Null if not specified."
+        },
+        "learn_more_links": {
+          "type": "array",
+          "description": "Links to official guidance or further reading.",
+          "items": {
+            "type": "object",
+            "required": ["text", "url"],
+            "additionalProperties": false,
+            "properties": {
+              "text": { "type": "string" },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "applies_to_sectors": {
+          "type": "array",
+          "description": "Sector IDs this obligation applies to, or ['all'] if sector-agnostic. IDs must match keys of the top-level 'sectors' map (or the string 'all').",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "applies_to_entity_types": {
+          "type": "array",
+          "description": "Entity type IDs this obligation applies to. Empty array means no entity-type restriction. IDs must match keys of the top-level 'entity_types' map.",
+          "items": { "type": "string" }
+        },
+        "requires_ransom_payment": {
+          "type": "boolean",
+          "description": "True if the obligation is triggered specifically by making a ransomware/extortion payment."
+        },
+        "state_territory": {
+          "type": "string",
+          "description": "Subdivision code for state/territory-specific obligations (e.g. 'NSW', 'VIC'). Omit for national obligations."
+        },
+        "public_sector_only": {
+          "type": "boolean",
+          "description": "True if the obligation applies only to public sector / government entities."
+        },
+        "commencement_date": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO date when the obligation commences. Include for obligations not yet in force or with staged commencement."
+        },
+        "not_yet_in_force": {
+          "type": "boolean",
+          "description": "True if the obligation has been legislated but is not yet active. Pair with commencement_date."
+        },
+        "acsc_hash": {
+          "type": ["string", "null"],
+          "description": "MD5-style hash linking back to an ACSC Single Reporting Portal enumeration entry. Null if the obligation was not sourced from the ACSC portal."
+        },
+        "last_verified": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO date the obligation was last verified against the primary source."
+        },
+        "source": {
+          "type": "string",
+          "description": "Primary source for the obligation data (e.g. 'ACSC Single Reporting Portal (verified by 89-query enumeration)')."
+        }
+      }
+    }
+  }
+}

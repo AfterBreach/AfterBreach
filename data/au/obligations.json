@@ -1,0 +1,1312 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-04-16",
+  "jurisdiction_coverage": [
+    "AU"
+  ],
+  "data_provenance": {
+    "acsc_portal_obligations": 25,
+    "acsc_verified_by_queries": 89,
+    "recommended_obligations": 4,
+    "state_territory_obligations": 4,
+    "additional_commonwealth_obligations": 2,
+    "total": 35
+  },
+  "source_notes": "25 ACSC obligations extracted and verified via 89-query enumeration of the Single Reporting Portal (cyber.gov.au). 4 recommended/best-practice obligations added from legal research. 4 state/territory obligations added (NSW MNDB, QLD MNDB, VIC OVIC, WA PRIS — WA not yet in force, commencing 1 Jan 2027). 2 additional Commonwealth obligations added (APRA CPS 230 operational risk incident and critical operations disruption). State/territory obligations are flagged with 'state_territory' and 'public_sector_only' fields.",
+  "disclaimer": "This tool is for planning and preparedness purposes only and does not constitute legal advice. Entities are responsible for identifying all requirements applicable to them. State/territory obligations are not yet included. Consult qualified legal counsel.",
+  "sectors": {
+    "395": "Data storage or processing",
+    "396": "Defence industry",
+    "397": "Energy",
+    "398": "Financial services and markets",
+    "399": "Food and grocery",
+    "400": "Health care and medical",
+    "401": "Higher education and research",
+    "402": "Space technology",
+    "403": "Telecommunications",
+    "404": "Transport, including aviation and maritime assets",
+    "405": "Water and sewerage",
+    "406": "Other"
+  },
+  "entity_types": {
+    "392": "ASX-listed",
+    "393": "Critical infrastructure",
+    "394": "Foreign investors"
+  },
+  "obligations": [
+    {
+      "id": "au-asx-continuous-disclosure",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incident materially affecting the price or value of the securities of an ASX-listed entity",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Securities Exchange (ASX)",
+      "who_applies_to": "Entities listed on the Australian Securities Exchange.",
+      "trigger_condition": "Information that a reasonable person would expect to have a material effect on the price or value of securities.",
+      "timeframe": "Immediately.",
+      "timeframe_sort_hours": 1,
+      "how_to_report": {
+        "method": "ASX Online (Market Announcements Platform)",
+        "url": null,
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "ASX Listing Rule 3.1; Corporations Act 2001",
+      "description": "If you are an ASX-listed listed entity, you must comply with Listing Rule 3.1 that if you become aware of information that a reasonable person would expect to have a material effect on the price or value of your securities, you must immediately tell the Australian Securities Exchange. Immediate disclosure is not required if the information falls within the exception in Listing Rule 3.1A. * Entities listed on markets other than ASX should consult the relevant guidance material for those markets.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Understand how to meet your continuous disclosure requirements",
+          "url": "https://www.asx.com.au/content/dam/asx/rules-guidance-notes-waivers/asx-listing-rules/rules/Chapter03.pdf"
+        },
+        {
+          "text": "Further guidance on the continuous disclosure requirement",
+          "url": "https://www.asx.com.au/documents/rules/Guidance_Note_8.pdf"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [
+        "392"
+      ],
+      "requires_ransom_payment": false,
+      "acsc_hash": "e737e3ad81bd",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-aircraft-incident",
+      "jurisdiction": "AU",
+      "obligation_name": "Incident affecting an aircraft",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Transport Safety Bureau (ATSB)",
+      "who_applies_to": "Responsible persons.",
+      "trigger_condition": "Aviation accidents or incidents.",
+      "timeframe": "As soon as practicable for ‘immediately reportable’ matters Within 72 hours for ‘routine reportable’ matters.",
+      "timeframe_sort_hours": 4,
+      "how_to_report": {
+        "method": "Phone (immediately reportable) or online form (routine)",
+        "url": "https://www.atsb.gov.au/mandatory",
+        "phone": "1800 011 034 / +61 2 6230 4470",
+        "email": null
+      },
+      "legislative_basis": "Transport Safety Investigation Act 2003",
+      "description": "The Australian Transport Safety Bureau’s safety occurrence reporting scheme sets out the requirements for notifying of aviation accidents or incidents. You must call the Australian Transport Safety Bureau for immediately reportable matters. For routine reportable matters, you can report to the Australian Transport Safety Bureau through their online form.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Call the ATSB on 1800 011 034 (toll-free, 24 hour)",
+          "url": "tel:1800011034"
+        },
+        {
+          "text": "Call the ATSB on +61 2 6230 4470 if outside Australia",
+          "url": "tel:+61262304470"
+        },
+        {
+          "text": "Learn more about aviation industry reporting",
+          "url": "https://www.atsb.gov.au/aviation-reporting-requirements"
+        }
+      ],
+      "applies_to_sectors": [
+        "404"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "a73bcf4500c3",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-soci-ci-incident",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incident affecting a critical infrastructure asset",
+      "obligation_type": "Mandatory",
+      "regulator": "Department of Home Affairs (via ASD's ACSC)",
+      "who_applies_to": "Entities responsible for critical infrastructure assets.",
+      "trigger_condition": "Significant or relevant impact on a critical infrastructure asset from a cyber security incident.",
+      "timeframe": "For a ‘significant impact’ within 12 hours of becoming aware of the incident. For a ‘relevant impact’ within 72 hours of becoming aware of the incident.",
+      "timeframe_sort_hours": 12,
+      "how_to_report": {
+        "method": "Online form or verbal (follow-up in writing required)",
+        "url": "https://www.cyber.gov.au/report-and-recover/report/report-a-cyber-security-incident",
+        "phone": "1300 292 371",
+        "email": null
+      },
+      "legislative_basis": "Security of Critical Infrastructure Act 2018 (SOCI Act), s30BC & s30BD",
+      "description": "You must report a cyber-security incident to the Department of Home Affairs. ASD’s ACSC host the reporting portal via cyber.gov.au and will engage with you on the technical details of the incident, while the Department of Home Affairs will engage for their regulatory functions. The report must either be made electronically through the Australian Signals Directorate’s Australian Cyber Security Centre or verbally. If the initial report was verbal, a written record must be provided within 84 hours for a ‘significant impact’ or within 48 hours of the verbal report being given for a ‘relevant impact’. If you have received an INC number from ASD’s ACSC you may have already completed this reporting requirement.",
+      "penalty": "Civil penalty for non-compliance under SOCI Act",
+      "learn_more_links": [
+        {
+          "text": "Learn more about cyber incident reporting for critical infrastructure assets",
+          "url": "entity:node/2111"
+        },
+        {
+          "text": "Further guidance on the Mandatory Cyber Incident Reporting Scheme",
+          "url": "https://www.cisc.gov.au/resources-subsite/Documents/mcir-guidance.pdf"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [
+        "393"
+      ],
+      "requires_ransom_payment": false,
+      "acsc_hash": "5ccec483bec7",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-aviation-maritime-cyber",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incident affecting an aviation or maritime asset",
+      "obligation_type": "Mandatory",
+      "regulator": "ASD's ACSC + Department of Home Affairs",
+      "who_applies_to": "Aviation, maritime and offshore industry participants.",
+      "trigger_condition": "Significant or relevant impact from a cyber incident on an aviation or maritime asset.",
+      "timeframe": "A ‘significant impact’ must be reported within 12 hours, and a ‘relevant impact’ must be reported within 72 hours of the industry participant becoming aware of the incident.",
+      "timeframe_sort_hours": 12,
+      "how_to_report": {
+        "method": "Online form (with consent to share with Home Affairs)",
+        "url": "https://www.cyber.gov.au/report-and-recover/report",
+        "phone": "1300 292 371",
+        "email": null
+      },
+      "legislative_basis": "Security of Critical Infrastructure Act 2018 (SOCI Act)",
+      "description": "You must report a cyber-security incident to both the ASD’s ACSC and the Department of Home Affairs. You can submit a report electronically through the ASD’s ACSC and provide consent for that report to be shared with the Department of Home Affairs. If you do not provide your consent, you will need to make a separate report to the Department of Home Affairs. If you have received an INC number from ASD's ACSC you may have already completed this reporting requirement.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about aviation security reporting",
+          "url": "https://www.cisc.gov.au/information-for-your-industry/transport/aviation"
+        },
+        {
+          "text": "Learn more about maritime security reporting",
+          "url": "https://www.cisc.gov.au/information-for-your-industry/transport/maritime/report-security-incident"
+        }
+      ],
+      "applies_to_sectors": [
+        "404"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "0a94566fc4df",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-telco-cyber",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incidents affecting telecommunications carriers & eligible carriage service providers",
+      "obligation_type": "Mandatory",
+      "regulator": "Department of Home Affairs (via ASD's ACSC)",
+      "who_applies_to": "Persons who hold a telecommunications carrier licence or carriage service providers.",
+      "trigger_condition": "Significant or relevant impact from a cyber incident on telecommunications infrastructure.",
+      "timeframe": "For a ‘significant impact’ within 12 hours of becoming aware of the incident. For a ‘relevant impact’ within 72 hours of becoming aware of the incident.",
+      "timeframe_sort_hours": 12,
+      "how_to_report": {
+        "method": "Online form or verbal",
+        "url": "https://www.cyber.gov.au/report-and-recover/report",
+        "phone": "1300 292 371",
+        "email": null
+      },
+      "legislative_basis": "Telecommunications Act 1997; Telecommunications (CSP—Security Information) Determination 2022",
+      "description": "You must report a cyber security incident to the Department of Home Affairs. The report must either be made electronically through the Australian Signals Directorate’s Australian Cyber Security Centre or verbally. If the initial report was verbal, a written record must be provided within 84 hours for a ‘significant impact’ or within 48 hours of the verbal report being given for a ‘relevant impact’.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about cyber incident reporting for critical infrastructure assets",
+          "url": "entity:node/2111"
+        },
+        {
+          "text": "Further guidance on the Mandatory Cyber Incident Reporting Scheme",
+          "url": "https://www.cisc.gov.au/resources-contact-information-subsite/Documents/mcir-guidance.pdf"
+        }
+      ],
+      "applies_to_sectors": [
+        "403"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "95fd140f7186",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-aviation-security",
+      "jurisdiction": "AU",
+      "obligation_name": "Aviation security incident (excluding cyber security incidents)",
+      "obligation_type": "Mandatory",
+      "regulator": "Department of Home Affairs",
+      "who_applies_to": "See below.",
+      "trigger_condition": "Act or threat of unlawful interference with aviation.",
+      "timeframe": "As soon as possible within 24 hours of becoming aware of the incident.",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.homeaffairs.gov.au/help-and-support/departmental-forms/online-forms/aviation-security-incident-report",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Aviation Transport Security Act 2004",
+      "description": "You must report an aviation security incident which is an act of unlawful interference or a threat of unlawful interference with aviation. The Department of Home Affairs encourages reporting of all aviation incidents to improve understanding of the aviation security environment, identify emerging risks, and ensure industry participants are proactively managing security. For further information on the meaning of ‘unlawful interference’, refer to:https://www.legislation.gov.au/C2004A01242/latest/text",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about aviation security reporting",
+          "url": "https://www.cisc.gov.au/information-for-your-industry/transport/aviation"
+        }
+      ],
+      "applies_to_sectors": [
+        "404"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "0386cc814492",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-rba-financial-stability",
+      "jurisdiction": "AU",
+      "obligation_name": "Breaches in Financial Stability Standards for Central Counterparties and Securities Settlement Facilities",
+      "obligation_type": "Mandatory",
+      "regulator": "Reserve Bank of Australia (RBA)",
+      "who_applies_to": "Holders of an Australian Clearing and Settlement Facility Licence.",
+      "trigger_condition": "Events or changes materially impacting risk management or operations.",
+      "timeframe": "As soon as reasonably practicable.",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "Direct notification (per RBA arrangements)",
+        "url": null,
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Corporations Act 2001; Financial Stability Standards (Standard 21)",
+      "description": "You must notify the Reserve Bank of Australia of any events or changes to your operations or circumstances that may materially impact your management of risks or ability to continue operations. Oral notification to the Reserve Bank of Australia may be appropriate, particularly in circumstances where timely communication is needed. In practice, this should be followed by notification in writing. Report to the RBA, per your assistance and notification arrangements.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about reporting under the Financial Stability Standards",
+          "url": "https://www.rba.gov.au/payments-and-infrastructure/financial-market-infrastructure/clearing-and-settlement-facilities/standards/central-counterparties/2012/standard-21.html"
+        }
+      ],
+      "applies_to_sectors": [
+        "398"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "87b04b94b14a",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-commercial-vessel",
+      "jurisdiction": "AU",
+      "obligation_name": "Incident affecting a commercial vessel",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Maritime Safety Authority (AMSA)",
+      "who_applies_to": "Owner and master of a commercial vessel.",
+      "trigger_condition": "Any event that endangers, or could endanger, safety of vessels or persons.",
+      "timeframe": "As soon as reasonably possible after becoming aware of the incident.",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.amsa.gov.au/vessels-operators/incident-reporting/incident-alert-form-18",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Marine Safety (Domestic Commercial Vessel) National Law Act 2012",
+      "description": "You must report marine incidents to AMSA. This includes any event that endangers, or if not corrected could endanger, the safety of vessels or persons.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about reporting to the Australian Maritime Safety Authority",
+          "url": "https://www.amsa.gov.au/marine-incident-reporting/how-report-incident"
+        },
+        {
+          "text": "Learn more about maritime incident reporting",
+          "url": "https://www.amsa.gov.au/marine-incident-reporting-0"
+        }
+      ],
+      "applies_to_sectors": [
+        "404"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "6d03e3b620e8",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-offshore-petroleum",
+      "jurisdiction": "AU",
+      "obligation_name": "Incident affecting offshore petroleum operations",
+      "obligation_type": "Mandatory",
+      "regulator": "NOPSEMA",
+      "who_applies_to": "Titleholders of an offshore well.",
+      "trigger_condition": "Cyber incident affecting safety, well/pipeline integrity, or the environment.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "Phone",
+        "url": null,
+        "phone": "1300 674 472",
+        "email": null
+      },
+      "legislative_basis": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+      "description": "You must notify the National Offshore Petroleum Safety and Environmental Management Authority where a cyber security incident occurs which affects the safety of persons, integrity of wells and pipelines, or the environment in offshore energy.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about reporting to the National Offshore Petroleum Safety and Environmental Management Authority",
+          "url": "https://www.nopsema.gov.au/offshore-industry/report-incident"
+        },
+        {
+          "text": "For incidents within WA State Inland waters, review the notification obligations at the relevant WA Government agency",
+          "url": "https://www.dmp.wa.gov.au/Safety/Reporting-an-accident-or-9994.aspx#:~:text=The%20occurrence%20report%20form%20is%20used%20to%20report,submission%20of%20the%20report.%20Lodging%20an%20occurrence%20report"
+        }
+      ],
+      "applies_to_sectors": [
+        "397"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "8eabdeb47528",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-maritime-security",
+      "jurisdiction": "AU",
+      "obligation_name": "Maritime security incident (excluding cyber security incidents)",
+      "obligation_type": "Mandatory",
+      "regulator": "Department of Home Affairs",
+      "who_applies_to": "See below.",
+      "trigger_condition": "Act or threat of unlawful interference with maritime transport or offshore facilities.",
+      "timeframe": "As soon as possible within 24 hours of becoming aware of the incident.",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.homeaffairs.gov.au/help-and-support/departmental-forms/online-forms/maritime-security-incident-report-form",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Maritime Transport and Offshore Facilities Security Act 2003",
+      "description": "You must report a maritime security incident which is an act of unlawful interference or a threat of unlawful interference with maritime transport or offshore facilities. The Department of Home Affairs encourages reporting of all maritime incidents to improve understanding of the maritime security environment, identify emerging risks, and ensure industry participants are proactively managing security. For further information on the meaning of ‘unlawful interference’, refer to:Maritime Transport and Offshore Facilities Security Act 2003 - Federal Register of Legislation",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about maritime security reporting",
+          "url": "https://www.cisc.gov.au/information-for-your-industry/transport/maritime/report-security-incident"
+        }
+      ],
+      "applies_to_sectors": [
+        "404"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "afdf54b2331c",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-cyber-insurer",
+      "jurisdiction": "AU",
+      "obligation_name": "Notify cyber insurer",
+      "obligation_type": "Recommended",
+      "regulator": "N/A (contractual)",
+      "who_applies_to": "All organisations with cyber insurance policies.",
+      "trigger_condition": "Any cyber incident that may give rise to a claim.",
+      "timeframe": "As soon as practicable (check policy terms).",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "Per insurance policy terms",
+        "url": null,
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Contractual obligation",
+      "description": "Most cyber insurance policies require timely notification as a condition of coverage. Failure to notify promptly may void or limit coverage.",
+      "penalty": null,
+      "learn_more_links": [],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "Best Practice"
+    },
+    {
+      "id": "au-apra-cps230-critical-disruption",
+      "jurisdiction": "AU",
+      "obligation_name": "Critical operations disruption beyond tolerance (APRA CPS 230)",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Prudential Regulation Authority (APRA)",
+      "who_applies_to": "All APRA-regulated entities (banks, insurers, superannuation funds).",
+      "trigger_condition": "Disruption to a critical operation that exceeds the entity's board-approved tolerance levels (maximum acceptable downtime, data loss, or minimum service levels during disruption). Critical operations include payments processing, deposit-taking, claims processing, investment management, and customer enquiries.",
+      "timeframe": "As soon as possible, not later than 24 hours.",
+      "timeframe_sort_hours": 24,
+      "how_to_report": {
+        "method": "APRA notification",
+        "url": "https://apra.au1.qualtrics.com/jfe/form/SV_5cL51HPlmtGWr8V",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "APRA Prudential Standard CPS 230 Operational Risk Management (in force 1 July 2025)",
+      "description": "APRA-regulated entities must notify APRA within 24 hours if a disruption to a critical operation exceeds the entity's tolerance levels. This is separate from and more urgent than the 72-hour operational risk incident notification. Critical operations are core business services that, if disrupted, could have a material adverse impact on depositors, policyholders, beneficiaries, customers, or the entity's role in the financial system.",
+      "penalty": "APRA enforcement action including infringement notices, directions, enforceable undertakings, licensing conditions.",
+      "learn_more_links": [
+        {
+          "text": "CPS 230 standard",
+          "url": "https://handbook.apra.gov.au/standard/cps-230"
+        }
+      ],
+      "applies_to_sectors": [
+        "398"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "APRA Prudential Standard CPS 230"
+    },
+    {
+      "id": "au-foreign-investment",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incident affecting a foreign investment",
+      "obligation_type": "Mandatory",
+      "regulator": "Department of the Treasury",
+      "who_applies_to": "Foreign persons with a no objection notification or exemption certificate, with the relevant conditions imposed.",
+      "trigger_condition": "Any cyber security incident affecting the foreign investment.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 48,
+      "how_to_report": {
+        "method": "Email",
+        "url": null,
+        "phone": null,
+        "email": "ForeignInvestmentCompliance@treasury.gov.au"
+      },
+      "legislative_basis": "Foreign Acquisitions and Takeovers Act 1975",
+      "description": "As part of your no objection notification or exemption certificate, you must produce records or reports of cyber security incidents to the Department of the Treasury.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about foreign investment privacy",
+          "url": "https://foreigninvestment.gov.au/privacy"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [
+        "394"
+      ],
+      "requires_ransom_payment": false,
+      "acsc_hash": "d2481a7150e0",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-ssba-cyber",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incident affecting the handling of Security Sensitive Biological Agents",
+      "obligation_type": "Mandatory",
+      "regulator": "Department of Health and Aged Care",
+      "who_applies_to": "Entities registered with the Security Sensitive Biological Agents Regulatory Scheme.",
+      "trigger_condition": "Cyber incident enabling unauthorised access, loss, theft, or release of SSBAs.",
+      "timeframe": "Within 2 business days of becoming aware of the incident. If required, you must also report to the police within 24 hours of becoming aware of the incident.",
+      "timeframe_sort_hours": 48,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.health.gov.au/resources/publications/ssba-form-incident-report?language=en",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "National Health Security Act 2007",
+      "description": "You must report to the interim Australian Centre for Disease Control, in the Department of Health and Aged Care reportable events that relate to unauthorised access, loss, theft, accidental release, or a person becoming affected by a Security Sensitive Biological Agent. If a cyber incident enabled any such reportable event, you must include those details in the incident report. In addition, some incidents must be reported to law enforcement.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about the Security Sensitive Biological Agents Regulatory Scheme",
+          "url": "https://www.health.gov.au/our-work/ssba-regulatory-scheme"
+        }
+      ],
+      "applies_to_sectors": [
+        "400"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "97ddc5f56782",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-tga-therapeutic",
+      "jurisdiction": "AU",
+      "obligation_name": "Cyber incident affecting therapeutic products",
+      "obligation_type": "Mandatory",
+      "regulator": "Therapeutic Goods Administration (TGA)",
+      "who_applies_to": "Therapeutic goods sponsors and manufacturers.",
+      "trigger_condition": "Medical device impacted by cyber security issue affecting health/safety.",
+      "timeframe": "Within 48 hours to 30 days of becoming aware of the incident, based on severity.",
+      "timeframe_sort_hours": 48,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.tga.gov.au/report-medical-device-incident-sponsors-and-manufacturers",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Therapeutic Goods Act 1989",
+      "description": "If you are the sponsor of the medical device, you must notify the Therapeutic Goods Administration after becoming aware of a medical device that appears to be impacted or have been impacted by a cyber security issue and could directly impact health and safety. If you are a user, you may choose to report as soon you become aware of a medical device that appears to be impacted or have been impacted by a cyber security issue and could directly impact health and safety.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about medical device incident reporting",
+          "url": "https://www.tga.gov.au/resources/resource/guidance/adverse-event-reporting"
+        },
+        {
+          "text": "Further guidance on medical device cyber security for sponsors and manufacturers",
+          "url": "https://www.tga.gov.au/how-we-regulate/manufacturing/medical-devices/manufacturer-guidance-specific-types-medical-devices/regulation-software-based-medical-devices/medical-device-cyber-security-guidance-industry"
+        },
+        {
+          "text": "Further guidance on medical device cyber security for consumers",
+          "url": "https://www.tga.gov.au/safety/safety/medical-device-cyber-security-consumer-information"
+        }
+      ],
+      "applies_to_sectors": [
+        "400"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "449e49a50cd6",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-portfolio-minister",
+      "jurisdiction": "AU",
+      "obligation_name": "Notify portfolio minister / relevant government department",
+      "obligation_type": "Recommended",
+      "regulator": "Relevant Commonwealth department",
+      "who_applies_to": "All organisations experiencing a significant cyber incident.",
+      "trigger_condition": "Significant cyber incident with potential public interest implications.",
+      "timeframe": "As soon as practicable after initial containment.",
+      "timeframe_sort_hours": 48,
+      "how_to_report": {
+        "method": "Direct contact (varies by portfolio)",
+        "url": null,
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "None (best practice)",
+      "description": "For significant incidents, proactive notification of the relevant portfolio minister or government department is considered best practice.",
+      "penalty": null,
+      "learn_more_links": [],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "Best Practice"
+    },
+    {
+      "id": "au-cdr-security",
+      "jurisdiction": "AU",
+      "obligation_name": "Consumer Data Right information security incident",
+      "obligation_type": "Mandatory",
+      "regulator": "OAIC + ASD's ACSC",
+      "who_applies_to": "Accredited Data Recipients under the Consumer Data Right.",
+      "trigger_condition": "Cyber incident leading to a breach of CDR data.",
+      "timeframe": "As soon as practicable if assessed to be an eligible data breach of CDR data.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form (dual report to OAIC and ACSC)",
+        "url": "https://www.oaic.gov.au/privacy/notifiable-data-breaches/report-a-data-breach",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Competition and Consumer Act 2010 (CDR Rules); Privacy Act 1988",
+      "description": "All data breaches of Consumer Data Right Information fall under the Notifiable Data Breaches scheme, which requires that you notify affected CDR consumers and the Office of the Australian Information Commissioner of eligible data breaches. A breach is eligible if it is likely to result in serious harm to a CDR consumer whose CDR data is involved. Where a cyber incident lead to a breach of Consumer Data Right information, you must also report to the Australian Signals Directorate’s Australian Cyber Security Centre as soon as practicable once aware of the security incident.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Understand how to notify consumers",
+          "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/preventing-preparing-for-and-responding-to-data-breaches/data-breach-preparation-and-response/part-4-notifiable-data-breach-ndb-scheme#how-do-i-notify-and-what-do-i-need-to-say"
+        },
+        {
+          "text": "Learn more about preparing for and responding to cyber incidents involving CDR data",
+          "url": "https://www.oaic.gov.au/consumer-data-right/consumer-data-right-guidance-for-business/guidance-for-entities-handling-cdr-data-on-preparing-for-and-responding-to-cyber-incidents-involving-cdr-data"
+        },
+        {
+          "text": "Learn more about the Consumer Data Right regulation",
+          "url": "https://www.oaic.gov.au/consumer-data-right/consumer-data-right-legislation,-regulation-and-definitions/consumer-data-right-regulation"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "9de91953fdbd",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-cdr-breach",
+      "jurisdiction": "AU",
+      "obligation_name": "Data breach of Consumer Data Right information",
+      "obligation_type": "Mandatory",
+      "regulator": "OAIC",
+      "who_applies_to": "Accredited Data Recipients under the Consumer Data Right.",
+      "trigger_condition": "Eligible data breach of CDR data likely to result in serious harm.",
+      "timeframe": "As soon as practicable if assessed to be an eligible data breach.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.oaic.gov.au/privacy/notifiable-data-breaches/report-a-data-breach",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Competition and Consumer Act 2010 (CDR Rules); Privacy Act 1988",
+      "description": "All data breaches of Consumer Data Right Information fall under the Notifiable Data Breaches scheme, which requires that you notify affected CDR consumers and the Office of the Australian Information Commissioner of eligible data breaches. A breach is eligible if it is likely to result in serious harm to a CDR consumer whose CDR data is involved. Where a cyber incident lead to a breach of Consumer Data Right information, you must also report to the Australian Signals Directorate’s Australian Cyber Security Centre as soon as practicable once aware of the security incident.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Understand how to notify individuals",
+          "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/preventing-preparing-for-and-responding-to-data-breaches/data-breach-preparation-and-response/part-4-notifiable-data-breach-ndb-scheme#how-do-i-notify-and-what-do-i-need-to-say"
+        },
+        {
+          "text": "Learn more about the Consumer Data Right regulation",
+          "url": "https://www.oaic.gov.au/consumer-data-right/consumer-data-right-legislation,-regulation-and-definitions/consumer-data-right-regulation"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "09d29492ab19",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-my-health-record",
+      "jurisdiction": "AU",
+      "obligation_name": "Data breach of My Health Record",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Digital Health Agency (ADHA) + OAIC",
+      "who_applies_to": "Reporting Entities covered by the My Health Records Act, including organisations that are registered to participate in the My Health Record system as a healthcare provider organisation, contracted service provider, portal operator or repository operator.",
+      "trigger_condition": "Unauthorised collection/use/disclosure of My Health Record data; or system compromise.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form (dual report to ADHA and OAIC)",
+        "url": "https://www.digitalhealth.gov.au/healthcare-providers/initiatives-and-programs/my-health-record/data-breaches",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "My Health Records Act 2012, s75",
+      "description": "An entity must notify the OAIC and System Operator (ADHA) where it becomes aware of: a) the unauthorised collection, use or disclosure of health information in an individual's My Health Record in contravention of the My Health Records Act 2012; OR b) an event or any circumstances that has, or may have, occurred or arisen that compromises, may compromise, have compromised or may have compromised, the security or integrity of the My Health Record system (whether or not involving a contravention of the My Health Records Act 2012). The contravention, event or circumstances must either have directly involved, may have involved or may involve the entity reporting the My Health Record data breach. Entities must also ask the ADHA to notify affected healthcare recipients. Note: Where the healthcare organisation is a state or territory authority or instrumentality, notification to OAIC is not required.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about My Health Record data breaches",
+          "url": "https://www.digitalhealth.gov.au/healthcare-providers/initiatives-and-programs/my-health-record/data-breaches"
+        },
+        {
+          "text": "Guide to mandatory data breach notification in the My Health Record system",
+          "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/health-service-providers/my-health-record/guide-to-mandatory-data-breach-notification-in-the-my-health-record-system"
+        }
+      ],
+      "applies_to_sectors": [
+        "400"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "84e8c5776275",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-my-health-record-state",
+      "jurisdiction": "AU",
+      "obligation_name": "Data breach of My Health Record (for State and Territory entities)",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Digital Health Agency (ADHA)",
+      "who_applies_to": "Reporting Entities covered by the My Health Records Act.",
+      "trigger_condition": "Unauthorised collection/use/disclosure of My Health Record data (State/Territory entities).",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.digitalhealth.gov.au/healthcare-providers/initiatives-and-programs/my-health-record/data-breaches",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "My Health Records Act 2012",
+      "description": "An entity must notify the Australian Digital Health Agency where it becomes aware of: a) the unauthorised collection, use or disclosure of health information in an individual's My Health Record in contravention of the My Health Records Act 2012; OR b) an event or any circumstances that has, or may have, occurred or arisen that compromises, may compromise, have compromised or may have compromised, the security or integrity of the My Health Record system (whether or not involving a contravention of the My Health Records Act 2012). The contravention, event or circumstances must either have directly involved, may have involved or may involve the entity reporting the My Health Record data breach Entities must also ask the Australian Digital Health Agency to notify affected healthcare recipients.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about My Health Record data breaches",
+          "url": "https://www.digitalhealth.gov.au/healthcare-providers/initiatives-and-programs/my-health-record/data-breaches"
+        }
+      ],
+      "applies_to_sectors": [
+        "400"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "fbf228db3f3a",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-data-scheme",
+      "jurisdiction": "AU",
+      "obligation_name": "Data breaches involving DATA Scheme participants",
+      "obligation_type": "Mandatory",
+      "regulator": "Office of the National Data Commissioner (ONDC) + OAIC",
+      "who_applies_to": "Entities regulated by the National Data Commissioner (including data custodians and accredited entities).",
+      "trigger_condition": "Breach of data shared under the DATA Scheme.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form (dual report to ONDC and OAIC if personal data)",
+        "url": "https://www.datacommissioner.gov.au/node/229",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Data Availability and Transparency Act 2022",
+      "description": "If you are regulated by the National Data Commissioner (data custodians, accredited users and accredited data service providers), you must report any breaches of data shared under the DATA Scheme. In addition, if you are an accredited user or accredited data service provider, you must report events and changes in circumstances to the National Data Commissioner that are relevant to your accreditation, including a data breach involving data shared outside of the DATA Scheme. If a breach involves personal data, it falls under the Notifiable Data Breaches scheme, which requires that you notify affected individuals and the Office of the Australian Information Commissioner of eligible data breaches. A breach is eligible if it is likely to result in serious harm to an individual whose personal information is involved. If you are a Scheme entity and make a report to the Office of the Australian Information Commissioner, you must give the National Data Commissioner a copy of any eligible data breach statement.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Understand how to notify individuals",
+          "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/preventing-preparing-for-and-responding-to-data-breaches/data-breach-preparation-and-response/part-4-notifiable-data-breach-ndb-scheme#how-do-i-notify-and-what-do-i-need-to-say"
+        },
+        {
+          "text": "Learn more about reporting under the DATA Scheme",
+          "url": "https://www.datacommissioner.gov.au/data-breach-responsibilities"
+        }
+      ],
+      "applies_to_sectors": [
+        "401"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "b1fe3d90e30a",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-apra-incident",
+      "jurisdiction": "AU",
+      "obligation_name": "Information security incident affecting APRA-regulated entities",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Prudential Regulation Authority (APRA)",
+      "who_applies_to": "Entities regulated by the Australian Prudential Regulation Authority.",
+      "trigger_condition": "Material (or potential material) information security incident.",
+      "timeframe": "Within 72 hours of becoming aware of the incident.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://apra.au1.qualtrics.com/jfe/form/SV_5cL51HPlmtGWr8V",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "APRA Prudential Standard CPS 234 Information Security",
+      "description": "You must notify the Australian Prudential Regulation Authority after becoming aware of an information security incident that has or could have a material effect on you or the interests of your customers. You must also report to the Australian Prudential Regulation Authority if the incident has been notified to other regulators, either in Australia or other jurisdictions.",
+      "penalty": "APRA enforcement action (infringement notices, directions, enforceable undertakings)",
+      "learn_more_links": [
+        {
+          "text": "Learn more about the information security prudential standard",
+          "url": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf"
+        },
+        {
+          "text": "Further guidance on the information security prudential standard",
+          "url": "https://www.apra.gov.au/sites/default/files/cpg_234_information_security_june_2019_0.pdf"
+        }
+      ],
+      "applies_to_sectors": [
+        "398"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "84dc067645e0",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-pipeline-integrity",
+      "jurisdiction": "AU",
+      "obligation_name": "Pipeline integrity incident",
+      "obligation_type": "Mandatory",
+      "regulator": "NOPTA / NOPSEMA",
+      "who_applies_to": "Pipeline licensees.",
+      "trigger_condition": "Any incident affecting the integrity of a pipeline.",
+      "timeframe": "Within 3 days.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Email or phone",
+        "url": null,
+        "phone": "1300 674 472",
+        "email": "resources@nopta.gov.au"
+      },
+      "legislative_basis": "Offshore Petroleum and Greenhouse Gas Storage Act 2006",
+      "description": "The National Offshore Petroleum Titles Administrator monitors titleholder's compliance with their legislative obligations. You must notify the National Offshore Petroleum Titles Administrator in the event of any incidents affecting the integrity of a pipeline. OR",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about offshore petroleum regulation",
+          "url": "https://www.nopta.gov.au/legislation-and-compliance/legislative-overview/regulatory-responsibilities.html"
+        }
+      ],
+      "applies_to_sectors": [
+        "397"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "8e73e300d304",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-ransomware",
+      "jurisdiction": "AU",
+      "obligation_name": "Ransomware payment",
+      "obligation_type": "Mandatory",
+      "regulator": "ASD's ACSC (on behalf of Department of Home Affairs)",
+      "who_applies_to": "Any entity who has made a ransomware payment.",
+      "trigger_condition": "Ransomware or cyber extortion payment made (no minimum threshold).",
+      "timeframe": "Within 72-hours of becoming aware of the payment.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.cyber.gov.au/report-and-recover/report/ransomware-payment-and-cyber-extortion-payment-reporting",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Cyber Security Act 2024, Part 3, s27",
+      "description": "Under section 27 of the Cyber Security Act 2024, a reporting business entity has an obligation to use this form to report to the Government if you have made or are aware another entity has made on your behalf, a ransomware or cyber extortion payment within 72 hours. You will be required to provide details of the cyber security incident including type of demand and the payment information if it is a monetary demand. Additionally, any details of communication with the extorting identity must also be reported.",
+      "penalty": "Civil penalty of up to 60 penalty units ($19,800). Active enforcement from 1 Jan 2026.",
+      "learn_more_links": [],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": true,
+      "acsc_hash": "575439ada822",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-acsc-voluntary",
+      "jurisdiction": "AU",
+      "obligation_name": "Voluntary cyber incident report to ASD's ACSC",
+      "obligation_type": "Recommended",
+      "regulator": "ASD's ACSC",
+      "who_applies_to": "All Australian organisations experiencing a cyber security incident.",
+      "trigger_condition": "Any cyber security incident.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form or phone",
+        "url": "https://www.cyber.gov.au/report-and-recover/report",
+        "phone": "1300 292 371 (1300 CYBER1)",
+        "email": null
+      },
+      "legislative_basis": "None (voluntary — protected by limited use provisions, Cyber Security Act 2024 Part 4)",
+      "description": "Reporting helps build Australia's threat picture and may enable ACSC technical assistance. Information is protected by limited use provisions.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "How the ACSC can help",
+          "url": "https://www.cyber.gov.au/report-and-recover/how-we-help-during-a-cyber-security-incident"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "Best Practice"
+    },
+    {
+      "id": "au-afp-cybercrime",
+      "jurisdiction": "AU",
+      "obligation_name": "Report cybercrime to Australian Federal Police",
+      "obligation_type": "Recommended",
+      "regulator": "Australian Federal Police (AFP)",
+      "who_applies_to": "All organisations that have been the victim of a cybercrime.",
+      "trigger_condition": "Any suspected criminal activity (ransomware, data theft, fraud, etc.).",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form (ReportCyber)",
+        "url": "https://www.cyber.gov.au/report-and-recover/report",
+        "phone": "1300 292 371",
+        "email": null
+      },
+      "legislative_basis": "None (voluntary)",
+      "description": "Report via ReportCyber. The ACSC works closely with AFP Cyber Command under Operation Aquila.",
+      "penalty": null,
+      "learn_more_links": [],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "Best Practice"
+    },
+    {
+      "id": "au-vic-ovic-incident",
+      "jurisdiction": "AU-VIC",
+      "obligation_name": "Information security incident notification (Victorian public sector)",
+      "obligation_type": "Mandatory",
+      "regulator": "Office of the Victorian Information Commissioner (OVIC)",
+      "who_applies_to": "Victorian public sector organisations subject to the Victorian Protective Data Security Standards (VPDSS).",
+      "trigger_condition": "Incident that has an adverse impact on the confidentiality, integrity, or availability of public sector information with a business impact level (BIL) of 2 (limited) or higher. This includes information with a protective marking of OFFICIAL: Sensitive, PROTECTED, Cabinet-In-Confidence or SECRET.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "Online form, email, or phone",
+        "url": "https://incident-notifications.ovic.vic.gov.au/",
+        "phone": "1300 006 842 (1300 00 OVIC)",
+        "email": "incidents@ovic.vic.gov.au"
+      },
+      "legislative_basis": "Privacy and Data Protection Act 2014 (Vic); Victorian Protective Data Security Standards (VPDSS), Element E9.010",
+      "description": "The OVIC Information Security Incident Notification Scheme centrally coordinates notification of information security incidents within Victorian government. Under VPDSS Element E9.010, Victorian public sector organisations must notify OVIC of incidents that have an adverse impact on the confidentiality, integrity, or availability of public sector information with a business impact level of 2 (limited) or higher. If the information has not been assessed or assigned a BIL rating yet, organisations are strongly encouraged to contact OVIC to discuss. Organisations should also notify the Victorian Government's Cyber Incident Response Service (CIRS) in the event of a cyber incident.",
+      "penalty": "OVIC may investigate and issue a Compliance Notice for serious breaches of the Privacy and Data Protection Act 2014 (Vic).",
+      "learn_more_links": [
+        {
+          "text": "OVIC Incident Notification Scheme",
+          "url": "https://ovic.vic.gov.au/information-security/incident-notification/"
+        },
+        {
+          "text": "Agency reporting obligations",
+          "url": "https://ovic.vic.gov.au/information-security/agency-reporting-obligations/"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "state_territory": "VIC",
+      "public_sector_only": true,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "OVIC website; VPDSS Element E9.010"
+    },
+    {
+      "id": "au-apra-cps230-operational-risk",
+      "jurisdiction": "AU",
+      "obligation_name": "Operational risk incident notification (APRA CPS 230)",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Prudential Regulation Authority (APRA)",
+      "who_applies_to": "All APRA-regulated entities (banks, insurers, superannuation funds).",
+      "trigger_condition": "Operational risk incident likely to have a material financial impact or a material impact on the ability of the entity to maintain its critical operations. An information security incident already reported under CPS 234 does not need to be separately reported under CPS 230.",
+      "timeframe": "As soon as possible, not later than 72 hours after becoming aware.",
+      "timeframe_sort_hours": 72,
+      "how_to_report": {
+        "method": "APRA notification",
+        "url": "https://apra.au1.qualtrics.com/jfe/form/SV_5cL51HPlmtGWr8V",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "APRA Prudential Standard CPS 230 Operational Risk Management (in force 1 July 2025)",
+      "description": "APRA-regulated entities must notify APRA of operational risk incidents likely to have a material financial impact or material impact on the entity's ability to maintain critical operations. This is distinct from CPS 234 information security incident reporting — CPS 230 covers broader operational risk including technology failures, process failures, and external events. An incident already reported under CPS 234 does not need to be separately reported. CPS 230 replaced CPS 231 (Outsourcing) and CPS 232 (Business Continuity Management).",
+      "penalty": "APRA enforcement action including infringement notices, directions, enforceable undertakings, licensing conditions.",
+      "learn_more_links": [
+        {
+          "text": "CPS 230 standard",
+          "url": "https://handbook.apra.gov.au/standard/cps-230"
+        }
+      ],
+      "applies_to_sectors": [
+        "398"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "APRA Prudential Standard CPS 230"
+    },
+    {
+      "id": "au-civil-aviation",
+      "jurisdiction": "AU",
+      "obligation_name": "Civil aviation contraventions",
+      "obligation_type": "Voluntary",
+      "regulator": "Australian Transport Safety Bureau (ATSB)",
+      "who_applies_to": "Holders of a civil aviation authorisation.",
+      "trigger_condition": "Civil aviation contravention.",
+      "timeframe": "Within 10 days.",
+      "timeframe_sort_hours": 240,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.atsb.gov.au/aviation-self-reporting-scheme",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Transport Safety Investigation Act 2003",
+      "description": "You may report a civil aviation contravention to the Australian Transport Safety Bureau. By reporting voluntarily, you may be able to claim protection from administrative action by the Civil Aviation Safety Authority. Voluntary reports will only be accepted within 10 days of the contravention.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about the Aviation Self Reporting Scheme",
+          "url": "https://www.atsb.gov.au/voluntary/asrs/asrs_more"
+        }
+      ],
+      "applies_to_sectors": [
+        "404"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "00c497469204",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-apra-weakness",
+      "jurisdiction": "AU",
+      "obligation_name": "Information security weakness affecting APRA-regulated entities",
+      "obligation_type": "Mandatory",
+      "regulator": "APRA",
+      "who_applies_to": "Entities regulated by the Australian Prudential Regulation Authority.",
+      "trigger_condition": "Material security control weakness not remediable in timely manner.",
+      "timeframe": "Within 10 business days of becoming aware of the security control weakness.",
+      "timeframe_sort_hours": 240,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://apra.au1.qualtrics.com/jfe/form/SV_5cL51HPlmtGWr8V",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "APRA Prudential Standard CPS 234 Information Security",
+      "description": "You must notify the Australian Prudential Regulation Authority if you are aware of a material information security control weakness which you are unable to remediate in a timely manner.",
+      "penalty": "APRA enforcement action",
+      "learn_more_links": [
+        {
+          "text": "Learn more about the information security prudential standard",
+          "url": "https://www.apra.gov.au/sites/default/files/cps_234_july_2019_for_public_release.pdf"
+        },
+        {
+          "text": "Further guidance on the information security prudential standard",
+          "url": "https://www.apra.gov.au/sites/default/files/cpg_234_information_security_june_2019_0.pdf"
+        }
+      ],
+      "applies_to_sectors": [
+        "398"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "eda7caa4aee5",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-ndb",
+      "jurisdiction": "AU",
+      "obligation_name": "Data breach of personal information",
+      "obligation_type": "Mandatory",
+      "regulator": "Office of the Australian Information Commissioner (OAIC)",
+      "who_applies_to": "Entities covered by the Privacy Act.",
+      "trigger_condition": "Eligible data breach: unauthorised access/disclosure/loss of personal information likely to result in serious harm.",
+      "timeframe": "As soon as practicable if an entity has reasonable grounds to believe there has been an eligible data breach.",
+      "timeframe_sort_hours": 720,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.oaic.gov.au/privacy/notifiable-data-breaches/report-a-data-breach",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Privacy Act 1988, Part IIIC (Notifiable Data Breaches scheme)",
+      "description": "Under the Notifiable Data Breaches scheme, you must notify affected individuals and the Office of the Australian Information Commissioner of eligible data breaches. A breach is eligible if it is likely to result in serious harm to an individual whose personal information is involved. You must conduct a reasonable and expeditious assessment of a suspected eligible data breach, taking all reasonable steps to ensure that the assessment is completed within 30 days.",
+      "penalty": "Up to $50M, 3x benefit, or 30% adjusted turnover (whichever greater)",
+      "learn_more_links": [
+        {
+          "text": "Understand how to notify individuals",
+          "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/preventing-preparing-for-and-responding-to-data-breaches/data-breach-preparation-and-response/part-4-notifiable-data-breach-ndb-scheme#section-notifying-individuals-about-an-eligible-databreach"
+        },
+        {
+          "text": "Learn more about the Notifiable Data Breaches scheme",
+          "url": "https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/preventing-preparing-for-and-responding-to-data-breaches/data-breach-preparation-and-response/part-4-notifiable-data-breach-ndb-scheme"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "ebd883b60301",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-asic-reportable",
+      "jurisdiction": "AU",
+      "obligation_name": "Situations affecting licensees",
+      "obligation_type": "Mandatory",
+      "regulator": "Australian Securities and Investments Commission (ASIC)",
+      "who_applies_to": "Australian financial services or credit licensees.",
+      "trigger_condition": "Reportable situations including business disruption and/or significant data breaches.",
+      "timeframe": "Within 30 days - materiality.",
+      "timeframe_sort_hours": 720,
+      "how_to_report": {
+        "method": "Online portal",
+        "url": "https://regulatoryportal.asic.gov.au/",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Corporations Act 2001, s912DAA",
+      "description": "You must submit notifications about ‘reportable situations’ (which include business disruption and/or significant data breaches) to the Australian Securities and Investments Commission.",
+      "penalty": null,
+      "learn_more_links": [
+        {
+          "text": "Learn more about reporting to the Australian Securities and Investments Commission",
+          "url": "https://asic.gov.au/online-services/regulatory-portal/"
+        }
+      ],
+      "applies_to_sectors": [
+        "398"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "acsc_hash": "9c5e22e1da16",
+      "last_verified": "2026-04-16",
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+    },
+    {
+      "id": "au-nsw-mndb",
+      "jurisdiction": "AU-NSW",
+      "obligation_name": "Mandatory Notification of Data Breach (NSW public sector)",
+      "obligation_type": "Mandatory",
+      "regulator": "NSW Information and Privacy Commission (IPC)",
+      "who_applies_to": "All NSW public sector agencies, departments, statutory authorities, local councils, state-owned corporations, Ministers' offices and some universities.",
+      "trigger_condition": "Eligible data breach: unauthorised access to, unauthorised disclosure of, or loss of personal information or health information held by a public sector agency, where a reasonable person would conclude the access or disclosure would be likely to result in serious harm.",
+      "timeframe": "As soon as practicable (assessment within 30 days of suspecting a breach).",
+      "timeframe_sort_hours": 720,
+      "how_to_report": {
+        "method": "Online form",
+        "url": "https://www.ipc.nsw.gov.au/privacy/MNDB-scheme",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Privacy and Personal Information Protection Act 1998 (NSW), Part 6A",
+      "description": "From 28 November 2023, NSW public sector agencies must notify the NSW Privacy Commissioner and affected individuals of eligible data breaches involving personal or health information that are likely to result in serious harm. Agencies must also maintain an internal data breach incident register and publish a publicly accessible data breach policy. The scheme broadly mirrors the Commonwealth NDB scheme under the Privacy Act 1988.",
+      "penalty": "The IPC may investigate, monitor and audit compliance. The Privacy Commissioner may issue compliance notices.",
+      "learn_more_links": [
+        {
+          "text": "MNDB Scheme - Information for agencies",
+          "url": "https://www.ipc.nsw.gov.au/privacy/MNDB-scheme"
+        },
+        {
+          "text": "Guide to managing data breaches under the PPIP Act",
+          "url": "https://www.ipc.nsw.gov.au/resources/guide-mandatory-notification-data-breach-scheme-guide-managing-data-breaches-accordance-ppip-act"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "state_territory": "NSW",
+      "public_sector_only": true,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "NSW IPC website; PPIP Act Part 6A"
+    },
+    {
+      "id": "au-qld-mndb",
+      "jurisdiction": "AU-QLD",
+      "obligation_name": "Mandatory Notification of Data Breach (QLD public sector)",
+      "obligation_type": "Mandatory",
+      "regulator": "Queensland Office of the Information Commissioner (OIC)",
+      "who_applies_to": "Queensland government agencies (from 1 July 2025). Local government (from 1 July 2026).",
+      "trigger_condition": "Eligible data breach: unauthorised access to, or unauthorised disclosure of, personal information held by the agency, or loss of personal information in circumstances likely to result in unauthorised access or disclosure, where the breach is likely to result in serious harm.",
+      "timeframe": "As soon as practicable (assessment within 30 days of suspecting a breach).",
+      "timeframe_sort_hours": 720,
+      "how_to_report": {
+        "method": "OIC Agency Portal",
+        "url": "https://www.oic.qld.gov.au",
+        "phone": null,
+        "email": null
+      },
+      "legislative_basis": "Information Privacy Act 2009 (Qld), Chapter 3A (inserted by IPOLA Act 2023)",
+      "description": "Queensland's MNDB scheme commenced 1 July 2025 for most QLD public sector agencies (local government from 1 July 2026). Agencies must notify the QLD Information Commissioner and affected individuals of eligible data breaches unless an exemption applies. Agencies must also take proactive steps to contain, assess and mitigate data breaches, keep a data breach register, and publish a data breach policy.",
+      "penalty": "The Information Commissioner has powers to oversee and investigate the management and notification of eligible data breaches.",
+      "learn_more_links": [
+        {
+          "text": "IPOLA overview and MNDB scheme",
+          "url": "https://www.oic.qld.gov.au/training-and-events/ipola"
+        },
+        {
+          "text": "MNDB scheme guideline (PDF)",
+          "url": "https://www.oic.qld.gov.au/__data/assets/pdf_file/0007/64294/Guideline-MNDB-mandatory-notification-of-data-breach.pdf"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "state_territory": "QLD",
+      "public_sector_only": true,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "QLD OIC website; Information Privacy Act 2009 (Qld) Chapter 3A"
+    },
+    {
+      "id": "au-wa-notifiable-breach",
+      "jurisdiction": "AU-WA",
+      "obligation_name": "Notifiable information breach (WA public sector)",
+      "obligation_type": "Mandatory",
+      "regulator": "WA Information Commissioner",
+      "who_applies_to": "WA public entities (government departments, local and regional governments, government trading enterprises, WA Police Force, universities, courts, tribunals) and contracted service providers where a State services contract includes a PRIS Act compliance clause.",
+      "trigger_condition": "Notifiable information breach: unauthorised access to, unauthorised disclosure of, or loss of personal information handled by an IPP entity, where a reasonable person would conclude it is likely to result in serious harm. Personal information definition is broader than Commonwealth — includes deceased individuals, location data, and predictive behavioural data.",
+      "timeframe": "As soon as practicable.",
+      "timeframe_sort_hours": 720,
+      "how_to_report": {
+        "method": "Report to WA Information Commissioner (details to be published before commencement)",
+        "url": "https://www.wa.gov.au/organisation/office-of-the-information-commissioner/privacy-western-australia",
+        "phone": null,
+        "email": "privacy@dpc.wa.gov.au"
+      },
+      "legislative_basis": "Privacy and Responsible Information Sharing Act 2024 (WA), Part 2 Division 6",
+      "description": "The WA notifiable information breach scheme commences 1 January 2027. WA public entities and contracted service providers (where contractually bound) must report serious data breaches to the WA Information Commissioner and notify affected individuals. Unlike the Commonwealth Privacy Act, there is no small business exemption or employee records exemption.",
+      "penalty": "Compensation orders up to $75,000. IPP compliance notice fines of $60,000. Imprisonment of up to 3 years for individuals who breach PRIS obligations.",
+      "learn_more_links": [
+        {
+          "text": "Privacy in Western Australia",
+          "url": "https://www.wa.gov.au/organisation/office-of-the-information-commissioner/privacy-western-australia"
+        },
+        {
+          "text": "PRIS Act overview",
+          "url": "https://www.corrs.com.au/insights/wa-government-passes-innovative-privacy-and-responsible-information-sharing-regime"
+        }
+      ],
+      "applies_to_sectors": [
+        "all"
+      ],
+      "applies_to_entity_types": [],
+      "requires_ransom_payment": false,
+      "state_territory": "WA",
+      "public_sector_only": true,
+      "commencement_date": "2027-01-01",
+      "not_yet_in_force": true,
+      "acsc_hash": null,
+      "last_verified": "2026-04-16",
+      "source": "WA Government website; PRIS Act 2024 Part 2 Division 6"
+    }
+  ]
+}
