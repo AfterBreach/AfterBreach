@@ -406,29 +406,53 @@ function renderList() {
     updateCount(sorted.length);
 }
 
-/* ---- Count animation ---- */
+/* ---- Count animation (reusable, per-element) ---- */
 
-let countAnim = null;
+const _reduceMotion = () =>
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const _animTokens = new WeakMap();
+
+function animateNumber(el, target, opts) {
+    if (!el) return;
+    opts = opts || {};
+    const delay    = opts.delay    != null ? opts.delay    : 0;
+    const duration = opts.duration != null ? opts.duration : 900;
+
+    if (_reduceMotion()) { el.textContent = String(target); return; }
+
+    const startVal = parseInt(el.textContent, 10) || 0;
+    if (startVal === target && delay === 0) return;
+
+    const prior = _animTokens.get(el);
+    if (prior) cancelAnimationFrame(prior);
+
+    setTimeout(() => {
+        const t0 = performance.now();
+        function step(now) {
+            const p = Math.min(1, (now - t0) / duration);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = String(Math.round(startVal + (target - startVal) * eased));
+            if (p < 1) {
+                _animTokens.set(el, requestAnimationFrame(step));
+            } else {
+                _animTokens.delete(el);
+            }
+        }
+        _animTokens.set(el, requestAnimationFrame(step));
+    }, delay);
+}
+
+let _firstCountCall = true;
 
 function updateCount(n) {
     const el = document.getElementById('count-main');
-    const start = parseInt(el.textContent, 10) || 0;
-    const end = n;
-    if (start === end) return;
-
-    if (countAnim) cancelAnimationFrame(countAnim);
-
-    const duration = 420;
-    const t0 = performance.now();
-
-    function step(now) {
-        const p = Math.min(1, (now - t0) / duration);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const v = Math.round(start + (end - start) * eased);
-        el.textContent = String(v);
-        if (p < 1) countAnim = requestAnimationFrame(step);
-    }
-    countAnim = requestAnimationFrame(step);
+    if (!el) return;
+    animateNumber(el, n, {
+        duration: _firstCountCall ? 900 : 480,
+        delay:    _firstCountCall ? 520 : 0
+    });
+    _firstCountCall = false;
 }
 
 /* ---- Profile controls wiring ---- */
@@ -601,20 +625,24 @@ function init() {
 }
 
 function renderSummary() {
-    const set = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = val;
-    };
-    set('sum-total',       SUMMARY.total);
-    set('sum-mandatory',   SUMMARY.mandatory);
-    set('sum-recommended', SUMMARY.recommended);
-    set('sum-regulators',  SUMMARY.regulators);
-    set('topbar-count',    SUMMARY.total);
-    set('topbar-version',  'V' + (DATA && DATA.schema_version ? DATA.schema_version : '—'));
+    const byId = id => document.getElementById(id);
+    const set  = (id, val) => { const el = byId(id); if (el) el.textContent = val; };
+
+    // Hero dashboard: count up staggered, after the hero-bar has risen in.
+    animateNumber(byId('sum-total'),       SUMMARY.total,       { delay: 620, duration: 1100 });
+    animateNumber(byId('sum-mandatory'),   SUMMARY.mandatory,   { delay: 740, duration: 1100 });
+    animateNumber(byId('sum-recommended'), SUMMARY.recommended, { delay: 860, duration: 1100 });
+    animateNumber(byId('sum-regulators'),  SUMMARY.regulators,  { delay: 980, duration: 1100 });
+
+    // Results count denominator (static number, but count it up for consistency)
+    animateNumber(byId('count-total'),     SUMMARY.total,       { delay: 520, duration: 800 });
+
+    // Topbar is instant (small static text)
+    set('topbar-count',   SUMMARY.total);
+    set('topbar-version', 'V' + (DATA && DATA.schema_version ? DATA.schema_version : '—'));
     if (DATA && DATA.last_updated) {
         set('topbar-date', DATA.last_updated.replace(/-/g, '·'));
     }
-    set('count-total', SUMMARY.total);
 }
 
 document.addEventListener('DOMContentLoaded', init);

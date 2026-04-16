@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div class="atmosphere" aria-hidden="true"></div>
+<canvas id="bg-shader" class="bg-shader" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
 
 <!-- ================= TOPBAR ================= -->
@@ -267,9 +267,9 @@
         <header class="results-head">
             <div class="results-count">
                 <div class="count-numerals">
-                    <span class="count-main" id="count-main">35</span>
+                    <span class="count-main" id="count-main">—</span>
                     <span class="count-divider">/</span>
-                    <span class="count-total" id="count-total">35</span>
+                    <span class="count-total" id="count-total">—</span>
                 </div>
                 <p class="count-label"><em id="count-mode">Exploring</em> — obligations matching your profile</p>
             </div>
@@ -1801,6 +1801,7 @@
 }
 </script>
 
+<script src="/australia/bg-shader.js" defer></script>
 <script src="/australia/app.js"></script>
 
 </body>
