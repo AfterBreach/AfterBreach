@@ -12,77 +12,27 @@ const DATA = (() => {
     catch (e) { console.error('Failed to parse obligations data', e); return null; }
 })();
 
-const OBLIGATIONS = DATA ? DATA.obligations : [];
-const SECTORS = DATA ? DATA.sectors : {};
+const OBLIGATIONS     = DATA ? DATA.obligations : [];
+const SECTORS         = DATA ? DATA.sectors     : {};
+const SCENARIO_LABELS = DATA ? (DATA.scenarios || {}) : {};
+const FLAG_LABELS     = DATA ? (DATA.flags     || {}) : {};
 
-/* ---- Domain rules ---------------------------------------------------
+/* ---- Profile → data bridge ----------------------------------------
 
-   Mapping from user-facing regulatory flags to the dataset's
-   entity-type IDs and to obligations that are only meaningful when
-   the user has explicitly ticked a flag.
+   Frontend user-profile flags map to two different data dimensions:
+     1. ACSC portal entity types (ASX, Critical infrastructure, Foreign
+        investor) — captured as applies_to_entity_types in the data.
+     2. User flag keys (APRA, AFS, Telco, etc.) — captured as
+        applies_to_flags in the data.
+
+   This lookup tells us which flag → entity-type-id. Everything else
+   lives in the data itself.
    ------------------------------------------------------------------ */
 
 const FLAG_TO_ENTITY_TYPE = {
-    asx: '392',
-    ci: '393',
+    asx:     '392',
+    ci:      '393',
     foreign: '394'
-};
-
-// Obligations hidden unless the matching flag is ticked.
-// These are narrowly-scoped obligations where default display would
-// over-report (e.g. APRA obligations for non-banks).
-const FLAG_GATED = {
-    'au-apra-incident':                    'apra',
-    'au-apra-weakness':                    'apra',
-    'au-apra-cps230-operational-risk':     'apra',
-    'au-apra-cps230-critical-disruption':  'apra',
-    'au-asic-reportable':                  'afs',
-    'au-telco-cyber':                      'telco',
-    'au-my-health-record':                 'mhr',
-    'au-my-health-record-state':           'mhr',
-    'au-cdr-security':                     'cdr',
-    'au-cdr-breach':                       'cdr',
-    'au-rba-financial-stability':          'clearing'
-};
-
-// Obligations hidden when turnover < $3M (Privacy Act small-business
-// exemption + Cyber Security Act 2024 reporting-entity threshold).
-const TURNOVER_GATED = new Set(['au-ndb', 'au-ransomware']);
-
-// Human scenario tags shown on rows in planning mode.
-const SCENARIO = {
-    'au-ndb':                              'if personal data is compromised',
-    'au-ransomware':                       'if a ransom payment is made',
-    'au-cdr-security':                     'if CDR data is affected',
-    'au-cdr-breach':                       'if CDR data is affected',
-    'au-my-health-record':                 'if My Health Record data is affected',
-    'au-my-health-record-state':           'if My Health Record data is affected',
-    'au-asx-continuous-disclosure':        'if material to securities value',
-    'au-apra-cps230-critical-disruption':  'if critical operations disrupted',
-    'au-ssba-cyber':                       'if SSBAs are affected',
-    'au-tga-therapeutic':                  'if a medical device is impacted',
-    'au-soci-ci-incident':                 'if significant impact on CI asset',
-    'au-aviation-maritime-cyber':          'if aviation or maritime asset affected'
-};
-
-// Machine-readable scenario → obligation mapping used for Incident-mode filtering.
-// Keys match scenario-chip data-scenario attributes; values are obligation IDs
-// that only apply when the scenario is active.
-const OBLIGATION_SCENARIOS = {
-    'au-ndb':                              ['personal-data'],
-    'au-ransomware':                       ['ransom-paid'],
-    'au-cdr-breach':                       ['personal-data', 'cdr-data'],
-    'au-cdr-security':                     ['cdr-data'],
-    'au-my-health-record':                 ['health-records', 'personal-data'],
-    'au-my-health-record-state':           ['health-records', 'personal-data'],
-    'au-nsw-mndb':                         ['personal-data'],
-    'au-qld-mndb':                         ['personal-data'],
-    'au-wa-notifiable-breach':             ['personal-data'],
-    'au-vic-ovic-incident':                ['personal-data'],
-    'au-apra-cps230-critical-disruption':  ['critical-ops'],
-    'au-soci-ci-incident':                 ['critical-ops'],
-    'au-asx-continuous-disclosure':        ['material-securities'],
-    'au-tga-therapeutic':                  ['health-records']
 };
 
 const MODE_CAPTIONS = {
@@ -95,6 +45,31 @@ const MODE_CAPTIONS = {
         text:  'Toggle the scenarios that have occurred to reveal triggered obligations.'
     }
 };
+
+/* ---- Dataset summary stats (dashboard numbers) ---- */
+
+const SUMMARY = (() => {
+    const byType = { Mandatory: 0, Voluntary: 0, Recommended: 0 };
+    const regulators = new Set();
+    for (const ob of OBLIGATIONS) {
+        if (byType[ob.obligation_type] !== undefined) byType[ob.obligation_type] += 1;
+        const r = ob.regulator || '';
+        if (!r || r === 'N/A (contractual)' || r.startsWith('Relevant ')) continue;
+        // Split compound entries ("OAIC + ASD's ACSC", "NOPTA / NOPSEMA") so each
+        // distinct agency is counted once across the dataset.
+        r.split(/\s*\+\s*|\s*\/\s*/).forEach(part => {
+            const trimmed = part.trim();
+            if (trimmed) regulators.add(trimmed);
+        });
+    }
+    return {
+        total:       OBLIGATIONS.length,
+        mandatory:   byType.Mandatory,
+        // Voluntary + Recommended grouped as "Recommended" for the dashboard.
+        recommended: byType.Voluntary + byType.Recommended,
+        regulators:  regulators.size
+    };
+})();
 
 /* ---- Filter state ---- */
 
@@ -123,8 +98,10 @@ function obligationMatches(ob, f) {
         // If sector === 'public' but no state selected: keep (ambiguous shows as conditional)
     }
 
-    // Turnover gating
-    if (f.turnover === 'below' && TURNOVER_GATED.has(ob.id)) return false;
+    // Turnover gating (data-driven via turnover_min_aud)
+    if (f.turnover === 'below' && ob.turnover_min_aud != null && ob.turnover_min_aud > 0) {
+        return false;
+    }
 
     // Industry / sector
     if (f.industry !== 'all') {
@@ -132,27 +109,30 @@ function obligationMatches(ob, f) {
         if (!sectors.includes('all') && !sectors.includes(f.industry)) return false;
     }
 
-    // Entity-type flags (ASX / CI / Foreign)
+    // Entity-type gating (ACSC portal types: ASX / CI / Foreign)
     if (ob.applies_to_entity_types && ob.applies_to_entity_types.length > 0) {
         const userEntities = [];
-        if (f.flags.has('asx'))     userEntities.push('392');
-        if (f.flags.has('ci'))      userEntities.push('393');
-        if (f.flags.has('foreign')) userEntities.push('394');
+        for (const [flag, et] of Object.entries(FLAG_TO_ENTITY_TYPE)) {
+            if (f.flags.has(flag)) userEntities.push(et);
+        }
         const match = ob.applies_to_entity_types.some(et => userEntities.includes(et));
         if (!match) return false;
     }
 
-    // Narrow obligations — require their flag
-    const gate = FLAG_GATED[ob.id];
-    if (gate && !f.flags.has(gate)) return false;
+    // Flag gating (applies_to_flags — data-driven)
+    const flagReqs = ob.applies_to_flags || [];
+    if (flagReqs.length > 0) {
+        const match = flagReqs.some(flag => f.flags.has(flag));
+        if (!match) return false;
+    }
 
-    // Incident-mode scenario gating: if the obligation only applies under
-    // specific scenarios, it shows only when at least one of those scenarios
-    // is toggled. Non-scenario obligations always pass.
+    // Incident-mode scenario gating (data-driven via obligation.scenarios).
+    // In incident mode, a scenario-tagged obligation only shows when at least
+    // one of its scenarios is toggled on. Non-scenario obligations always pass.
     if (f.mode === 'incident') {
-        const scenarios = OBLIGATION_SCENARIOS[ob.id];
-        if (scenarios && scenarios.length > 0) {
-            const active = scenarios.some(s => f.scenarios.has(s));
+        const sc = ob.scenarios || [];
+        if (sc.length > 0) {
+            const active = sc.some(s => f.scenarios.has(s));
             if (!active) return false;
         }
     }
@@ -227,7 +207,21 @@ function renderObligation(ob, idx) {
 
     const dl = formatDeadline(ob.timeframe_sort_hours);
     const typeClass = ob.obligation_type.toLowerCase();
-    const scenarioTag = filters.mode === 'plan' ? SCENARIO[ob.id] : null;
+
+    // Build the scenario tag string ("if personal data is compromised")
+    // from the obligation's scenarios array, using the dataset's labels.
+    let scenarioTag = null;
+    if (filters.mode === 'plan' && ob.scenarios && ob.scenarios.length > 0) {
+        const labels = ob.scenarios.map(s => {
+            const label = SCENARIO_LABELS[s];
+            if (!label) return s;
+            // Turn "Personal data was compromised" → "if personal data is compromised"
+            return 'if ' + label.charAt(0).toLowerCase() + label.slice(1)
+                .replace(/ was /g, ' is ')
+                .replace(/ were /g, ' is ');
+        });
+        scenarioTag = labels.join(' · ');
+    }
 
     const basis = ob.legislative_basis
         ? ob.legislative_basis.split(';')[0].trim()
@@ -599,8 +593,28 @@ function init() {
     setStateChipsEnabled(false);
     setMode('plan');
 
+    // Fill summary numbers from the dataset (hero stats + topbar)
+    renderSummary();
+
     // Initial render
     renderList();
+}
+
+function renderSummary() {
+    const set = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+    };
+    set('sum-total',       SUMMARY.total);
+    set('sum-mandatory',   SUMMARY.mandatory);
+    set('sum-recommended', SUMMARY.recommended);
+    set('sum-regulators',  SUMMARY.regulators);
+    set('topbar-count',    SUMMARY.total);
+    set('topbar-version',  'V' + (DATA && DATA.schema_version ? DATA.schema_version : '—'));
+    if (DATA && DATA.last_updated) {
+        set('topbar-date', DATA.last_updated.replace(/-/g, '·'));
+    }
+    set('count-total', SUMMARY.total);
 }
 
 document.addEventListener('DOMContentLoaded', init);

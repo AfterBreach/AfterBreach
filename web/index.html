@@ -28,11 +28,11 @@
             <span class="chip">DATASET</span>
             <span>AU</span>
             <span class="dot">·</span>
-            <span>35 OBLIGATIONS</span>
+            <span><span id="topbar-count">—</span> OBLIGATIONS</span>
             <span class="dot">·</span>
-            <span>V1.0.0</span>
+            <span id="topbar-version">—</span>
             <span class="dot">·</span>
-            <span>VERIFIED 2026·04·16</span>
+            <span>VERIFIED <span id="topbar-date">—</span></span>
         </div>
     </div>
 </header>
@@ -40,8 +40,6 @@
 <!-- ================= HERO ================= -->
 <section class="hero">
     <div class="hero-inner">
-        <p class="hero-kicker">An open reference — Commonwealth, state &amp; territory</p>
-
         <h1 class="hero-title">
             <span class="accent">Every cyber incident report</span> an Australian organisation may need to make<span class="full-stop">.</span>
         </h1>
@@ -69,23 +67,19 @@
             <dl class="stat-strip">
                 <div class="stat">
                     <dt class="stat-label">Obligations</dt>
-                    <dd class="stat-value">35</dd>
-                </div>
-                <div class="stat">
-                    <dt class="stat-label">Regulators</dt>
-                    <dd class="stat-value">22</dd>
+                    <dd class="stat-value" id="sum-total">—</dd>
                 </div>
                 <div class="stat">
                     <dt class="stat-label">Mandatory</dt>
-                    <dd class="stat-value">30</dd>
+                    <dd class="stat-value" id="sum-mandatory">—</dd>
                 </div>
                 <div class="stat">
-                    <dt class="stat-label">Tightest window</dt>
-                    <dd class="stat-value">01<span class="stat-unit">H</span></dd>
+                    <dt class="stat-label">Recommended</dt>
+                    <dd class="stat-value" id="sum-recommended">—</dd>
                 </div>
                 <div class="stat">
-                    <dt class="stat-label">Widest window</dt>
-                    <dd class="stat-value">30<span class="stat-unit">D</span></dd>
+                    <dt class="stat-label">Regulators</dt>
+                    <dd class="stat-value" id="sum-regulators">—</dd>
                 </div>
             </dl>
         </div>
@@ -317,8 +311,8 @@
 
 <!-- Inline dataset (makes file:// viewing work; replace with fetch in production) -->
 <script id="obligations-data" type="application/json">{
-  "schema_version": "1.0.0",
-  "last_updated": "2026-04-16",
+  "schema_version": "1.1.0",
+  "last_updated": "2026-04-17",
   "jurisdiction_coverage": [
     "AU"
   ],
@@ -390,7 +384,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "e737e3ad81bd",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [
+        "material-securities"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-aircraft-incident",
@@ -432,7 +431,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "a73bcf4500c3",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-soci-ci-incident",
@@ -472,7 +474,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "5ccec483bec7",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [
+        "critical-ops"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-aviation-maritime-cyber",
@@ -510,7 +517,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "0a94566fc4df",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-telco-cyber",
@@ -548,7 +558,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "95fd140f7186",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "telco"
+      ],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-aviation-security",
@@ -582,7 +597,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "0386cc814492",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-rba-financial-stability",
@@ -616,7 +634,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "87b04b94b14a",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "clearing"
+      ],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-commercial-vessel",
@@ -654,7 +677,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "6d03e3b620e8",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-offshore-petroleum",
@@ -692,7 +718,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "8eabdeb47528",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-maritime-security",
@@ -726,7 +755,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "afdf54b2331c",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-cyber-insurer",
@@ -755,7 +787,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "Best Practice"
+      "source": "Best Practice",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-apra-cps230-critical-disruption",
@@ -789,7 +824,14 @@
       "requires_ransom_payment": false,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "APRA Prudential Standard CPS 230"
+      "source": "APRA Prudential Standard CPS 230",
+      "applies_to_flags": [
+        "apra"
+      ],
+      "scenarios": [
+        "critical-ops"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-foreign-investment",
@@ -825,7 +867,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "d2481a7150e0",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-ssba-cyber",
@@ -859,7 +904,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "97ddc5f56782",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-tga-therapeutic",
@@ -901,7 +949,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "449e49a50cd6",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [
+        "health-records"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-portfolio-minister",
@@ -930,7 +983,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "Best Practice"
+      "source": "Best Practice",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-cdr-security",
@@ -972,7 +1028,14 @@
       "requires_ransom_payment": false,
       "acsc_hash": "9de91953fdbd",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "cdr"
+      ],
+      "scenarios": [
+        "cdr-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-cdr-breach",
@@ -1010,7 +1073,15 @@
       "requires_ransom_payment": false,
       "acsc_hash": "09d29492ab19",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "cdr"
+      ],
+      "scenarios": [
+        "personal-data",
+        "cdr-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-my-health-record",
@@ -1048,7 +1119,15 @@
       "requires_ransom_payment": false,
       "acsc_hash": "84e8c5776275",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "mhr"
+      ],
+      "scenarios": [
+        "health-records",
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-my-health-record-state",
@@ -1082,7 +1161,15 @@
       "requires_ransom_payment": false,
       "acsc_hash": "fbf228db3f3a",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "mhr"
+      ],
+      "scenarios": [
+        "health-records",
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-data-scheme",
@@ -1120,7 +1207,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "b1fe3d90e30a",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-apra-incident",
@@ -1158,7 +1248,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "84dc067645e0",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "apra"
+      ],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-pipeline-integrity",
@@ -1192,7 +1287,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "8e73e300d304",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-ransomware",
@@ -1221,7 +1319,12 @@
       "requires_ransom_payment": true,
       "acsc_hash": "575439ada822",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [
+        "ransom-paid"
+      ],
+      "turnover_min_aud": 3000000
     },
     {
       "id": "au-acsc-voluntary",
@@ -1255,7 +1358,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "Best Practice"
+      "source": "Best Practice",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-afp-cybercrime",
@@ -1284,7 +1390,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "Best Practice"
+      "source": "Best Practice",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-vic-ovic-incident",
@@ -1324,7 +1433,12 @@
       "public_sector_only": true,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "OVIC website; VPDSS Element E9.010"
+      "source": "OVIC website; VPDSS Element E9.010",
+      "applies_to_flags": [],
+      "scenarios": [
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-apra-cps230-operational-risk",
@@ -1358,7 +1472,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "APRA Prudential Standard CPS 230"
+      "source": "APRA Prudential Standard CPS 230",
+      "applies_to_flags": [
+        "apra"
+      ],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-civil-aviation",
@@ -1392,7 +1511,10 @@
       "requires_ransom_payment": false,
       "acsc_hash": "00c497469204",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-apra-weakness",
@@ -1430,7 +1552,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "eda7caa4aee5",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "apra"
+      ],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-ndb",
@@ -1468,7 +1595,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "ebd883b60301",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [],
+      "scenarios": [
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-asic-reportable",
@@ -1502,7 +1634,12 @@
       "requires_ransom_payment": false,
       "acsc_hash": "9c5e22e1da16",
       "last_verified": "2026-04-16",
-      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)"
+      "source": "ACSC Single Reporting Portal (verified by 89-query enumeration)",
+      "applies_to_flags": [
+        "afs"
+      ],
+      "scenarios": [],
+      "turnover_min_aud": null
     },
     {
       "id": "au-nsw-mndb",
@@ -1542,7 +1679,12 @@
       "public_sector_only": true,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "NSW IPC website; PPIP Act Part 6A"
+      "source": "NSW IPC website; PPIP Act Part 6A",
+      "applies_to_flags": [],
+      "scenarios": [
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-qld-mndb",
@@ -1582,7 +1724,12 @@
       "public_sector_only": true,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "QLD OIC website; Information Privacy Act 2009 (Qld) Chapter 3A"
+      "source": "QLD OIC website; Information Privacy Act 2009 (Qld) Chapter 3A",
+      "applies_to_flags": [],
+      "scenarios": [
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     },
     {
       "id": "au-wa-notifiable-breach",
@@ -1624,10 +1771,35 @@
       "not_yet_in_force": true,
       "acsc_hash": null,
       "last_verified": "2026-04-16",
-      "source": "WA Government website; PRIS Act 2024 Part 2 Division 6"
+      "source": "WA Government website; PRIS Act 2024 Part 2 Division 6",
+      "applies_to_flags": [],
+      "scenarios": [
+        "personal-data"
+      ],
+      "turnover_min_aud": null
     }
-  ]
-}</script>
+  ],
+  "flags": {
+    "asx": "ASX-listed entity",
+    "ci": "Critical infrastructure entity",
+    "foreign": "Foreign investor with FIRB conditions",
+    "apra": "APRA-regulated entity (bank, insurer, super fund)",
+    "afs": "AFS or credit licensee",
+    "telco": "Telecommunications carrier or CSP",
+    "mhr": "My Health Record participant",
+    "cdr": "CDR accredited data recipient",
+    "clearing": "Clearing and settlement facility licensee"
+  },
+  "scenarios": {
+    "personal-data": "Personal data was compromised",
+    "ransom-paid": "A ransomware or extortion payment was made",
+    "health-records": "Health records were affected",
+    "critical-ops": "Critical operations were disrupted",
+    "material-securities": "Material impact on securities value",
+    "cdr-data": "CDR data was affected"
+  }
+}
+</script>
 
 <script src="app.js"></script>
 

@@ -49,7 +49,17 @@
     },
     "entity_types": {
       "type": "object",
-      "description": "Map of entity type IDs to human-readable names. IDs are jurisdiction-specific.",
+      "description": "Map of entity type IDs to human-readable names. IDs are jurisdiction-specific. These typically come from the jurisdiction's regulator taxonomy (e.g. ACSC portal in AU).",
+      "additionalProperties": { "type": "string" }
+    },
+    "flags": {
+      "type": "object",
+      "description": "Map of user-profile flag keys to human-readable labels. Flags represent specific regulatory positions an entity may hold (e.g. 'apra' for APRA-regulated). Used by obligations[].applies_to_flags.",
+      "additionalProperties": { "type": "string" }
+    },
+    "scenarios": {
+      "type": "object",
+      "description": "Map of scenario keys to human-readable labels. Scenarios represent incident conditions used to gate obligations in Incident-mode (e.g. 'personal-data' for 'personal data was compromised'). Used by obligations[].scenarios.",
       "additionalProperties": { "type": "string" }
     },
     "obligations": {
@@ -89,6 +99,8 @@
         "learn_more_links",
         "applies_to_sectors",
         "applies_to_entity_types",
+        "applies_to_flags",
+        "scenarios",
         "requires_ransom_payment",
         "last_verified",
         "source"
@@ -196,9 +208,23 @@
           "description": "Entity type IDs this obligation applies to. Empty array means no entity-type restriction. IDs must match keys of the top-level 'entity_types' map.",
           "items": { "type": "string" }
         },
+        "applies_to_flags": {
+          "type": "array",
+          "description": "User-profile flag keys this obligation requires. Obligation is only applicable if the user has at least one of these flags set. Empty array means no flag restriction. Keys must match the top-level 'flags' map.",
+          "items": { "type": "string" }
+        },
+        "scenarios": {
+          "type": "array",
+          "description": "Scenario keys that trigger this obligation. Used for Incident-mode filtering: obligation only applies when at least one of these scenarios is active. Empty array means the obligation is not scenario-gated (applies on any incident that matches the profile). Keys must match the top-level 'scenarios' map.",
+          "items": { "type": "string" }
+        },
+        "turnover_min_aud": {
+          "type": ["number", "null"],
+          "description": "Minimum annual turnover (in AUD) at which this obligation applies. Null if turnover-independent. This is a simplified filter; real applicability may depend on additional factors documented in the description."
+        },
         "requires_ransom_payment": {
           "type": "boolean",
-          "description": "True if the obligation is triggered specifically by making a ransomware/extortion payment."
+          "description": "True if the obligation is triggered specifically by making a ransomware/extortion payment. (Deprecated in favor of scenarios: ['ransom-paid']; kept for provenance.)"
         },
         "state_territory": {
           "type": "string",
